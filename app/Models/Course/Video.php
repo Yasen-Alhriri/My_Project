@@ -28,4 +28,14 @@ class Video extends Model
     {
         return $this->belongsTo(Course::class, 'id_course');
     }
+
+    /**
+     * Get all of the comments for the Video
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function reportVideo()
+    {
+        return $this->hasMany(ReportVideo::class);
+    }
 }

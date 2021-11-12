@@ -37,5 +37,23 @@ class User extends Model
     {
         return $this->hasMany(Product::class);
     }
-
+/**
+ * Get all of the ReportVideo for the User
+ *
+ * @return \Illuminate\Database\Eloquent\Relations\HasMany
+ */
+public function reportVideo()
+{
+    return $this->hasMany(ReportVideo::class );
 }
+/**
+ * Get all of the comments for the User
+ *
+ * @return \Illuminate\Database\Eloquent\Relations\HasMany
+ */
+public function rateProduct()
+{
+    return $this->hasMany(RateProduct::class);
+}
+
+}//End Class

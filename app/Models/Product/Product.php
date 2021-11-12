@@ -55,4 +55,13 @@ class Product extends Model
     {
         return $this->hasMany(ImageProduct::class);
     }
+    /**
+     * Get all of the comments for the Product
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function rateProduct()
+    {
+        return $this->hasMany(RateProduct::class);
+    }
 }
