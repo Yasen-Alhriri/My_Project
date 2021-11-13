@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Product;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product\CategoryProduct;
 use Illuminate\Http\Request;
 
 class CategoryProductController extends Controller
@@ -14,7 +15,12 @@ class CategoryProductController extends Controller
      */
     public function index()
     {
-        //
+        $categories = CategoryProduct::latest(
+            'name',
+            'image')->paginate(4);
+            $count=0;
+        return view('course.categoryProduct.index', compact('categories','count'))->with('i', (request()->input('page', 1) - 1) * 5);
+
     }
 
     /**
@@ -24,7 +30,7 @@ class CategoryProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('product.categoryProduct.create');
     }
 
     /**
@@ -35,7 +41,27 @@ class CategoryProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name	'=>'required',
+            'image'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048']);
+
+            $category = new CategoryProduct;
+            $category->name = $request->input('name');
+
+
+            if ($request->hasFile('image')) {
+
+
+                $file = $request->file('image');
+                $extention = $file->getClientOriginalExtension();
+                $filename = time().'.'.$extention ;
+                $file->move('image/category/' , $filename);
+                $category->image = $filename;
+
+            }
+
+            $category->save();
+            return redirect()->route('categoryProduct.index');
     }
 
     /**
@@ -46,7 +72,8 @@ class CategoryProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $category = CategoryProduct::where('id','=',$id)->first();
+        return view('product.categoryProduct.show', compact('category'));
     }
 
     /**
@@ -57,7 +84,9 @@ class CategoryProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = CategoryProduct::where('id','=',$id)->first();
+        return view('product.categoryProduct.edit', compact('category'));
+
     }
 
     /**
@@ -69,7 +98,23 @@ class CategoryProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $category = CategoryProduct::where('id','=',$id)->first();
+        $category->name = $request->input('name');
+
+
+        if ($request->hasFile('image')) {
+
+
+            $file = $request->file('image');
+            $extention = $file->getClientOriginalExtension();
+            $filename = time().'.'.$extention ;
+            $file->move('image/category/' , $filename);
+            $category->image = $filename;
+
+        }
+
+        $category->update();
+        return redirect()->route('categoryProduct.index');
     }
 
     /**
