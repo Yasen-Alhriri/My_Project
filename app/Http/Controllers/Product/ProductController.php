@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\Product;
+use App\Http\Controllers\Controller;
 use App\Models\Product\Product;
+use App\Models\Product\CategoryProduct;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -14,7 +15,18 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $products = Product::latest(
+        'name',
+        'description',
+        'image',
+        'price',
+        'size',
+    	'unit',
+        'count_visits',
+        )->paginate(4);
+        $count=0;
+    return view('product.index', compact('products','count'))->with('i', (request()->input('page', 1) - 1) * 5);
+
     }
 
     /**
@@ -24,7 +36,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $categories = CategoryProduct::all();
+        // dd($categories);
+        return view('product.create', compact('categories'));
     }
 
     /**
@@ -35,7 +49,38 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name'=>'required',
+            'description'=>'required',
+            'image'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'price'=>'required',
+            'size'=>'required',
+            'unit'=>'required',
+            'category'=>'required'
+        ]);
+
+        $product = new Product;
+        $product->name = $request->input('product_name');
+        $product->description = $request->input('product_description');
+        $product->price = $request->input('price_product');
+        $product->size = $request->input('size_product');
+        $product->unit = $request->input('unit_product');
+        $product->category = $request->input('category');
+
+
+        if ($request->hasFile('image')) {
+
+
+            $file = $request->file('image');
+            $extention = $file->getClientOriginalExtension();
+            $filename = time().'.'.$extention ;
+            $file->move('image/course/' , $filename);
+            $product->image = $filename;
+
+        }
+
+        $product->save();
+        return redirect()->route('product.index');
     }
 
     /**
@@ -44,9 +89,11 @@ class ProductController extends Controller
      * @param  \App\Models\Product\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show($id)
     {
-        //
+        $product = Product::where('id','=',$id)->first();
+
+        return view('product.show', compact('product'));
     }
 
     /**
@@ -55,9 +102,10 @@ class ProductController extends Controller
      * @param  \App\Models\Product\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit($id)
     {
-        //
+        $product = Product::where('id','=',$id)->first();
+        return view('product.edit', compact('product'));
     }
 
     /**
@@ -67,9 +115,30 @@ class ProductController extends Controller
      * @param  \App\Models\Product\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request,$id)
     {
-        //
+        $product = Product::where('id','=',$id)->first();
+        $product->name = $request->input('product_name');
+        $product->description = $request->input('product_description');
+        $product->price = $request->input('price_product');
+        $product->size = $request->input('size_product');
+        $product->unit = $request->input('unit_product');
+        $product->category = $request->input('category');
+
+
+        if ($request->hasFile('image')) {
+
+
+            $file = $request->file('image');
+            $extention = $file->getClientOriginalExtension();
+            $filename = time().'.'.$extention ;
+            $file->move('image/course/' , $filename);
+            $product->image = $filename;
+
+        }
+
+        $product->update();
+        return redirect()->route('product.index');
     }
 
     /**

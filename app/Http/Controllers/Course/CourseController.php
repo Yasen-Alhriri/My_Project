@@ -22,7 +22,7 @@ class CourseController extends Controller
             'description',
             'image')->paginate(4);
             $count=0;
-        return view('Course.index', compact('courses','count'))->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('course.index', compact('courses','count'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -50,7 +50,7 @@ class CourseController extends Controller
     {
         $categories = CategoryCourse::all();
         // dd($categories);
-        return view('Course.create', compact('categories'));
+        return view('course.create', compact('categories'));
     }
 
     /**
@@ -88,7 +88,7 @@ class CourseController extends Controller
         }
 
         $course->save();
-        return redirect()->route('Course.index');
+        return redirect()->route('course.index');
     }
 
     /**
@@ -104,7 +104,7 @@ class CourseController extends Controller
 
         // $course = Course::find($course);
         // $course = Course::where('id',$course)->first();
-        return view('Course.show', compact('course'));
+        return view('course.show', compact('course'));
     }
 
     /**
@@ -145,7 +145,7 @@ class CourseController extends Controller
         }
 
         $course->update();
-        return redirect()->route('Course.index');
+        return redirect()->route('course.index');
     }
 
     /**
@@ -163,6 +163,6 @@ class CourseController extends Controller
     public function softdelete($id)
     {
         Course::find($id)->delete();
-        return redirect()->route('Course.index');
+        return redirect()->route('course.index');
     }
 }
