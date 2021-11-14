@@ -49,38 +49,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name'=>'required',
-            'description'=>'required',
-            'image'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'price'=>'required',
-            'size'=>'required',
-            'unit'=>'required',
-            'category'=>'required'
-        ]);
 
-        $product = new Product;
-        $product->name = $request->input('product_name');
-        $product->description = $request->input('product_description');
-        $product->price = $request->input('price_product');
-        $product->size = $request->input('size_product');
-        $product->unit = $request->input('unit_product');
-        $product->category = $request->input('category');
-
-
-        if ($request->hasFile('image')) {
-
-
-            $file = $request->file('image');
-            $extention = $file->getClientOriginalExtension();
-            $filename = time().'.'.$extention ;
-            $file->move('image/course/' , $filename);
-            $product->image = $filename;
-
-        }
-
-        $product->save();
-        return redirect()->route('product.index');
     }
 
     /**
@@ -149,6 +118,6 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+
     }
 }

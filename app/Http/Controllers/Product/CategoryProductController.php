@@ -19,7 +19,7 @@ class CategoryProductController extends Controller
             'name',
             'image')->paginate(4);
             $count=0;
-        return view('course.categoryProduct.index', compact('categories','count'))->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('product.categoryProduct.index', compact('categories','count'))->with('i', (request()->input('page', 1) - 1) * 5);
 
     }
 
