@@ -42,12 +42,12 @@ class VideoController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'id_course'=>'required',
-            'url'=>'required',
-            'name'=>'required',
-            'video_Order'=>'required',
-        ]);
+        // $request->validate([
+        //     'id_course'=>'required',
+        //     'url'=>'required',
+        //     'name'=>'required',
+        //     'video_Order'=>'required',
+        // ]);
 
         $video = new Video;
         $video->id_course = $request->input('id_course');
