@@ -1,12 +1,14 @@
 @extends('layouts.layout')
 
+
+@section('title','Soft Delete Courses')
 @section('content')
 
 
     <!--  -->
-    <div class="alert alert-info container w-50" role="alert">
-        <a href="{{ route('course.create') }}" class="btn btn-primary btn-lg ">Add Course</a>
-        <span>Clic to add course</span>
+    <div>
+
+        <a href="{{ route('product.index') }}" class="btn btn-secondary" aria-current="page">Back</a>
 
     </div>
 
@@ -17,18 +19,11 @@
 
 
     <!--  -->
-    <div class="col-lg-7 mb-lg-0 mb-4 container" style="width: auto;">
-
+    <div class="col-lg-7 mb-lg-0 mb-4" style="width: auto;">
         <div class="card">
             <div class="card-body p-3">
                 <div class="row">
 
-                    {{-- Soft Delete --}}
-                    <div>
-                        <a href="{{ route('course.soft.delete.show') }}" class="btn btn-info"
-                            aria-current="page">Soft Delete</a>
-                    </div>
-                        {{--  --}}
 
                     <table class="table table-hover container">
                         <thead>
@@ -42,32 +37,29 @@
 
 
                         <tbody>
-                                @foreach ($courses as $course)
+                                @foreach ($products as $product)
                                 <tr>
                                     <th scope="row">
                                         <p>{{ ++$count }}</p>
                                     </th>
                                     <td>
-                                        <img src="{{ asset('image/course/' . $course->image) }}" class="card-img-top"
+                                        <img src="{{ asset('image/product/' . $product->image) }}" class="card-img-top"
                                             alt="..." width="50px" height="50px">
                                     </td>
                                     <td>
-                                        <h5 class="card-title">{{ $course->name }}</h5>
+                                        <h5 class="card-title">{{ $product->name }}</h5>
                                     </td>
                                     <td>
                                         {{--  --}}
                                         <div class="btn-group">
 
-                                            <a href="{{ route('course.show', $course->id) }}" class="btn btn-primary"
+                                            <a href="{{ route('product.show', $product->id) }}" class="btn btn-primary"
                                                 aria-current="page">Show</a>
-                                            <a href="{{ route('course.edit', $course->id) }}"
-                                                class="btn btn-success">Edit</a>
-                                            <form action="{{route('course.soft.delete' , $course->id)}}" method="post">
+                                            <form action="{{route('course.soft.delete' , $product->id)}}" method="post">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger">Delete</button>
                                             </form>
-
                                         </div>
                                     </td>
                                 </tr>
@@ -84,5 +76,5 @@
 
 
 
-        {{ $courses->links() }}
+        {{ $products->links() }}
     @endsection

@@ -25,7 +25,7 @@ class ProductController extends Controller
         'count_visits',
         )->paginate(4);
         $count=0;
-    return view('product.index', compact('products','count'))->with('i', (request()->input('page', 1) - 1) * 5);
+    return view('product.product.index', compact('products','count'))->with('i', (request()->input('page', 1) - 1) * 5);
 
     }
 
@@ -62,7 +62,7 @@ class ProductController extends Controller
     {
         $product = Product::where('id','=',$id)->first();
 
-        return view('product.show', compact('product'));
+        return view('product.product.show', compact('product'));
     }
 
     /**
@@ -116,8 +116,42 @@ class ProductController extends Controller
      * @param  \App\Models\Product\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy($id)
+    {
+        $product = Product::where('id', '=', $id)->first();
+        $product->delete();
+        return redirect()->back();
+    }
+
+    public function softDelete($id)
+    {
+        $product = Product::find($id)->delete();
+        return redirect()->back();
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function softDeleteShow()
+    {
+        $products = Product::onlyTrashed()->latest(
+            'name',
+            'presenter',
+            'description',
+            'image'
+        )->paginate(4);
+        $count = 0;
+        return view('product.product.softDelete', compact('products', 'count'))->with('i', (request()->input('page', 1) - 1) * 5);
+    }
+
+    public function backFromSoftDelete($id)
     {
 
+        $product = Product::onlyTrashed()->where('id' , $id)->first()->restore() ;
+      //  dd($product);
+
+        return redirect()->back();
     }
 }

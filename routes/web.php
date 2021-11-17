@@ -6,10 +6,14 @@ use Illuminate\Support\Facades\Route;
 
 use Illuminate\Support\Facades\Auth;
 
+//
 use App\Http\Controllers\Course\CourseController;
 use App\Http\Controllers\Course\CategoryCourseController;
 use App\Http\Controllers\Course\VideoController;
+
+//
 use App\Http\Controllers\Product\CategoryProductController;
+use App\Http\Controllers\Product\ProductController;
 
 //
 /*
@@ -43,6 +47,7 @@ Route::namespace('Course')->group(function () {
         Route::get('/show/{id}', [CategoryCourseController::class, 'show'])->name('categoryCourse.show');
         Route::get('/edit/{id}', [CategoryCourseController::class, 'edit'])->name('categoryCourse.edit');
         Route::put('/update/{id}', [CategoryCourseController::class, 'update'])->name('categoryCourse.update');
+        Route::put('/delete/{id}', [CategoryCourseController::class, 'destroy'])->name('categoryCourse.delete');
     });
 
 
@@ -56,7 +61,7 @@ Route::namespace('Course')->group(function () {
         Route::put('/update/{id}', [CourseController::class, 'update'])->name('course.update');
 
 
-        Route::post('/soft-delete/{id}', [CourseController::class, 'softDelete'])->name('course.soft.delete');
+        Route::delete('/soft-delete/{id}', [CourseController::class, 'softDelete'])->name('course.soft.delete');
         Route::get('/soft-delete/show', [CourseController::class, 'softDeleteShow'])->name('course.soft.delete.show');
     });
 
@@ -87,5 +92,13 @@ Route::namespace('product')->group(function(){
 
     });
 
+    Route::prefix('product')->group(function(){
 
+        Route::get('/product', [ProductController::class, 'index'])->name('product.index');
+        Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
+
+        Route::delete('/soft-delete/{id}', [ProductController::class, 'softDelete'])->name('product.soft.delete');
+        Route::get('/soft-delete/show', [ProductController::class, 'softDeleteShow'])->name('product.soft.delete.show');
+
+    });
 });

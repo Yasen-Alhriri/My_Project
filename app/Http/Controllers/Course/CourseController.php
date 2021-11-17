@@ -20,9 +20,10 @@ class CourseController extends Controller
             'name',
             'presenter',
             'description',
-            'image')->paginate(4);
-            $count=0;
-        return view('course.course.index', compact('courses','count'))->with('i', (request()->input('page', 1) - 1) * 5);
+            'image'
+        )->paginate(4);
+        $count = 0;
+        return view('course.course.index', compact('courses', 'count'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -65,14 +66,13 @@ class CourseController extends Controller
 
             $file = $request->file('image');
             $extention = $file->getClientOriginalExtension();
-            $filename = time().'.'.$extention ;
-            $file->move('image/course/' , $filename);
+            $filename = time() . '.' . $extention;
+            $file->move('image/course/', $filename);
             $course->image = $filename;
-
         }
 
         $course->save();
-        return redirect()->route('course.index');
+        return redirect()->route('Course.index');
     }
 
     /**
@@ -83,8 +83,8 @@ class CourseController extends Controller
      */
     public function show($id)
     {
-     //    echo $course;die;
-        $course = Course::where('id','=',$id)->first();
+        //    echo $course;die;
+        $course = Course::where('id', '=', $id)->first();
 
         // $course = Course::find($course);
         // $course = Course::where('id',$course)->first();
@@ -99,7 +99,7 @@ class CourseController extends Controller
      */
     public function edit($id)
     {
-        $course = Course::where('id','=',$id)->first();
+        $course = Course::where('id', '=', $id)->first();
         return view('course.course.edit', compact('course'));
     }
 
@@ -112,7 +112,7 @@ class CourseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $course = Course::where('id','=',$id)->first();
+        $course = Course::where('id', '=', $id)->first();
         $course->name = $request->input('course_name');
         $course->presenter = $request->input('course_presenter');
         $course->description = $request->input('course_description');
@@ -122,10 +122,9 @@ class CourseController extends Controller
 
             $file = $request->file('image');
             $extention = $file->getClientOriginalExtension();
-            $filename = time().'.'.$extention ;
-            $file->move('image/course/' , $filename);
+            $filename = time() . '.' . $extention;
+            $file->move('image/course/', $filename);
             $course->image = $filename;
-
         }
 
         $course->update();
@@ -138,19 +137,21 @@ class CourseController extends Controller
      * @param  \App\Models\Course\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Course $course)
+    public function destroy($id)
     {
-
+        $course = Course::where('id', '=', $id)->first();
+        $course->delete();
+        return redirect()->back();
     }
 
 
     public function softDelete($id)
     {
-        Course::find($id)->delete();
-        return redirect()->route('course.index');
+        $course = Course::find($id)->delete();
+        return redirect()->back();
     }
 
-        /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -161,11 +162,19 @@ class CourseController extends Controller
             'name',
             'presenter',
             'description',
-            'image')->paginate(4);
-            $count=0;
-        return view('course.course.soft', compact('courses','count'))->with('i', (request()->input('page', 1) - 1) * 5);
+            'image'
+        )->paginate(4);
+        $count = 0;
+        return view('course.course.softDelete', compact('courses', 'count'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
+    public function backFromSoftDelete($id)
+    {
+
+
+        $course = Course::onlyTrashed()->where('id' , $id)->first()->restore() ;
+      //  dd($product);
+
+        return redirect()->back();
+    }
 }
-
-
