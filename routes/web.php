@@ -56,8 +56,8 @@ Route::namespace('Course')->group(function () {
         Route::put('/update/{id}', [CourseController::class, 'update'])->name('course.update');
 
 
-        Route::post('/soft-delete/{id}', [CourseController::class, 'softdelete'])->name('course.soft.delete');
-        Route::get('/soft-delete', [CourseController::class, 'softdeleteshow'])->name('course.soft.delete.show');
+        Route::post('/soft-delete/{id}', [CourseController::class, 'softDelete'])->name('course.soft.delete');
+        Route::get('/soft-delete/show', [CourseController::class, 'softDeleteShow'])->name('course.soft.delete.show');
     });
 
 
@@ -87,9 +87,5 @@ Route::namespace('product')->group(function(){
 
     });
 
-    Route::prefix('product')->group(function(){
-
-
-    });
 
 });

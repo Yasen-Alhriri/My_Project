@@ -26,22 +26,6 @@ class CourseController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function softdeleteshow()
-    {
-        $courses = Course::onlyTrashed()->latest(
-            'name',
-            'presenter',
-            'description',
-            'image')->paginate(4);
-            $count=0;
-        return view('course.course.soft', compact('courses','count'))->with('i', (request()->input('page', 1) - 1) * 5);
-    }
-
-    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -160,9 +144,28 @@ class CourseController extends Controller
     }
 
 
-    public function softdelete($id)
+    public function softDelete($id)
     {
         Course::find($id)->delete();
         return redirect()->route('course.index');
     }
+
+        /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function softDeleteShow()
+    {
+        $courses = Course::onlyTrashed()->latest(
+            'name',
+            'presenter',
+            'description',
+            'image')->paginate(4);
+            $count=0;
+        return view('course.course.soft', compact('courses','count'))->with('i', (request()->input('page', 1) - 1) * 5);
+    }
+
 }
+
+
