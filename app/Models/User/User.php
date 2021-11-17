@@ -4,12 +4,17 @@ namespace App\Models\User;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class User extends Model
 {
     use HasFactory;
 
     protected $table = 'users';
+
+    use SoftDeletes;
+    protected $detes = ['deleted_at'];
 
     public $timestamps = false;
     protected $fillable = [
@@ -24,7 +29,6 @@ class User extends Model
         'gender',
         'phone ',
         'location',
-        'status',
         'create_date'
     ];
 
@@ -37,23 +41,22 @@ class User extends Model
     {
         return $this->hasMany(Product::class);
     }
-/**
- * Get all of the ReportVideo for the User
- *
- * @return \Illuminate\Database\Eloquent\Relations\HasMany
- */
-public function reportVideo()
-{
-    return $this->hasMany(ReportVideo::class );
-}
-/**
- * Get all of the comments for the User
- *
- * @return \Illuminate\Database\Eloquent\Relations\HasMany
- */
-public function rateProduct()
-{
-    return $this->hasMany(RateProduct::class);
-}
-
+    /**
+     * Get all of the ReportVideo for the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function reportVideo()
+    {
+        return $this->hasMany(ReportVideo::class);
+    }
+    /**
+     * Get all of the comments for the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function rateProduct()
+    {
+        return $this->hasMany(RateProduct::class);
+    }
 }//End Class

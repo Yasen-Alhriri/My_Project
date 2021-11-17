@@ -15,7 +15,9 @@ class ReportVideo extends Model
 
     public $timestamps = false;
     protected $fillable = [
-        'id_user','id_video','message'
+        'id_user',
+        'id_video',
+        'message'
 
     ];
 
@@ -26,12 +28,10 @@ class ReportVideo extends Model
      */
     public function Video()
     {
-        return $this->belongsTo(Video::class,'id_video');
+        return $this->belongsTo(Video::class, 'id_video');
     }
     public function user()
     {
-        return $this->belongsTo(User::class,'id_user');
+        return $this->belongsTo(User::class, 'id_user');
     }
-    
-
 }

@@ -5,8 +5,8 @@
 
     <!--  -->
     <div class="alert alert-info container w-50" role="alert">
-        <a href="{{ route('categoryCourse.create') }}" class="btn btn-primary btn-lg ">Add Category Course</a>
-        <span>Clic to add Category Course</span>
+        <a href="{{ route('categoryProduct.create') }}" class="btn btn-primary btn-lg ">Add Category Product</a>
+        <span>Clic to add Category Product</span>
     </div>
 
 

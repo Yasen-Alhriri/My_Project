@@ -27,7 +27,6 @@ class Course extends Model
         'presenter',
         'description',
         'image',
-        'status',
         'category'
     ];
 

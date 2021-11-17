@@ -22,7 +22,7 @@ class CourseController extends Controller
             'description',
             'image')->paginate(4);
             $count=0;
-        return view('course.index', compact('courses','count'))->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('course.course.index', compact('courses','count'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -38,7 +38,7 @@ class CourseController extends Controller
             'description',
             'image')->paginate(4);
             $count=0;
-        return view('course.soft', compact('courses','count'))->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('course.course.soft', compact('courses','count'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -50,7 +50,7 @@ class CourseController extends Controller
     {
         $categories = CategoryCourse::all();
         // dd($categories);
-        return view('course.create', compact('categories'));
+        return view('course.course.create', compact('categories'));
     }
 
     /**
@@ -104,7 +104,7 @@ class CourseController extends Controller
 
         // $course = Course::find($course);
         // $course = Course::where('id',$course)->first();
-        return view('course.show', compact('course'));
+        return view('course.course.show', compact('course'));
     }
 
     /**
@@ -116,7 +116,7 @@ class CourseController extends Controller
     public function edit($id)
     {
         $course = Course::where('id','=',$id)->first();
-        return view('course.edit', compact('course'));
+        return view('course.course.edit', compact('course'));
     }
 
     /**

@@ -1,14 +1,14 @@
 @extends('layouts.layout')
 
 
-@section('title', 'Edit CategoryCourse')
-@section('PageName', 'Edit Category Course')
+@section('title', 'Edit categoryProduct')
+@section('PageName', 'Edit Category Product')
 
 @section('content')
 
 
 
-    <form action="{{ route('categoryCourse.update', $category->id) }}" method="post" enctype="multipart/form-data" class="container mt-5">
+    <form action="{{ route('categoryProduct.update', $category->id) }}" method="post" enctype="multipart/form-data" class="container mt-5">
         @csrf
         @method('PUT')
         <div class="form-floating mb-3">
@@ -21,7 +21,7 @@
         </div>
 
         <button type="submit" class="btn btn-primary">Update Category</button>
-        <a href="{{ route('categoryCourse.index') }}" class="btn btn-secondary" aria-current="page">Back</a>
+        <a href="{{ route('categoryProduct.index') }}" class="btn btn-secondary" aria-current="page">Back</a>
 
     </form>
 

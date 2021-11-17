@@ -17,9 +17,10 @@ class CategoryCourseController extends Controller
     {
         $categories = CategoryCourse::latest(
             'name',
-            'image')->paginate(4);
-            $count=0;
-        return view('course.categoryCourse.index', compact('categories','count'))->with('i', (request()->input('page', 1) - 1) * 5);
+            'image'
+        )->paginate(4);
+        $count = 0;
+        return view('course.categoryCourse.index', compact('categories', 'count'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -41,8 +42,8 @@ class CategoryCourseController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name	'=>'required',
-            'image'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'name	' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
 
         $category = new CategoryCourse;
@@ -54,10 +55,9 @@ class CategoryCourseController extends Controller
 
             $file = $request->file('image');
             $extention = $file->getClientOriginalExtension();
-            $filename = time().'.'.$extention ;
-            $file->move('image/category/' , $filename);
+            $filename = time() . '.' . $extention;
+            $file->move('image/category/', $filename);
             $category->image = $filename;
-
         }
 
         $category->save();
@@ -72,7 +72,7 @@ class CategoryCourseController extends Controller
      */
     public function show($id)
     {
-        $category = CategoryCourse::where('id','=',$id)->first();
+        $category = CategoryCourse::where('id', '=', $id)->first();
         return view('course.categoryCourse.show', compact('category'));
     }
 
@@ -84,7 +84,7 @@ class CategoryCourseController extends Controller
      */
     public function edit($id)
     {
-        $category = CategoryCourse::where('id','=',$id)->first();
+        $category = CategoryCourse::where('id', '=', $id)->first();
         return view('course.categoryCourse.edit', compact('category'));
     }
 
@@ -97,7 +97,7 @@ class CategoryCourseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $category = CategoryCourse::where('id','=',$id)->first();
+        $category = CategoryCourse::where('id', '=', $id)->first();
         $category->name = $request->input('name');
 
 
@@ -106,15 +106,13 @@ class CategoryCourseController extends Controller
 
             $file = $request->file('image');
             $extention = $file->getClientOriginalExtension();
-            $filename = time().'.'.$extention ;
-            $file->move('image/category/' , $filename);
+            $filename = time() . '.' . $extention;
+            $file->move('image/category/', $filename);
             $category->image = $filename;
-
         }
 
         $category->update();
         return redirect()->route('categoryCourse.index');
-
     }
 
     /**

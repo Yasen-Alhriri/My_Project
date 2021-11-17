@@ -1,14 +1,14 @@
 @extends('layouts.layout')
 
 
-@section('title', 'Create CategoryCourse')
-@section('PageName', 'Create Category Course')
+@section('title', 'Create categoryProduct')
+@section('PageName', 'Create Category Product')
 
 @section('content')
 
 
 
-    <form action="{{ route('categoryCourse.store') }}" method="post" enctype="multipart/form-data" class="container mt-5">
+    <form action="{{ route('categoryProduct.store') }}" method="post" enctype="multipart/form-data" class="container mt-5">
         @csrf
 
         <div class="form-floating mb-3">
@@ -21,7 +21,7 @@
         </div>
 
         <button type="submit" class="btn btn-primary">Save Category</button>
-        <a href="{{ route('categoryCourse.index') }}" class="btn btn-secondary" aria-current="page">Back</a>
+        <a href="{{ route('categoryProduct.index') }}" class="btn btn-secondary" aria-current="page">Back</a>
 
     </form>
 

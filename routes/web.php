@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Course\CourseController;
 use App\Http\Controllers\Course\CategoryCourseController;
 use App\Http\Controllers\Course\VideoController;
+use App\Http\Controllers\Product\CategoryProductController;
 
 //
 /*
@@ -31,7 +32,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-
+//Course
 Route::namespace('Course')->group(function () {
 
     Route::prefix('categoryCourse')->group(function () {
@@ -69,4 +70,26 @@ Route::namespace('Course')->group(function () {
         Route::get('/edit/{id}', [VideoController::class, 'edit'])->name('video.edit');
         Route::put('/update/{id}', [VideoController::class, 'update'])->name('video.update');
     });
+});
+
+
+//Product
+Route::namespace('product')->group(function(){
+
+    Route::prefix('categoryProduct')->group(function(){
+
+        Route::get('/categoryProduct', [CategoryProductController::class, 'index'])->name('categoryProduct.index');
+        Route::get('/create', [CategoryProductController::class, 'create'])->name('categoryProduct.create');
+        Route::post('/store', [CategoryProductController::class, 'store'])->name('categoryProduct.store');
+        Route::get('/show/{id}', [CategoryProductController::class, 'show'])->name('categoryProduct.show');
+        Route::get('/edit/{id}', [CategoryProductController::class, 'edit'])->name('categoryProduct.edit');
+        Route::put('/update/{id}', [CategoryProductController::class, 'update'])->name('categoryProduct.update');
+
+    });
+
+    Route::prefix('product')->group(function(){
+
+
+    });
+
 });

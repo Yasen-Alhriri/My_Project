@@ -15,7 +15,10 @@ class RateProduct extends Model
 
     public $timestamps = false;
     protected $fillable = [
-       'id_user','id_product','rating','comment'
+        'id_user',
+        'id_product',
+        'rating',
+        'comment'
     ];
 
     /**
@@ -25,12 +28,10 @@ class RateProduct extends Model
      */
     public function product()
     {
-        return $this->belongsTo(Product::class,'id_product');
+        return $this->belongsTo(Product::class, 'id_product');
     }
     public function user()
     {
-        return $this->belongsTo(User::class,'id_user');
+        return $this->belongsTo(User::class, 'id_user');
     }
-
-
 }
