@@ -40,13 +40,26 @@
                                 </th>
                                 <td>
                                     <img src="{{ asset('image/course/' . $course->image) }}" class="card-img-top"
-                                        alt="...">
+                                    alt="..." width="50px" height="50px">
+
                                 </td>
                                 <td>
                                     <h5 class="card-title">{{ $course->name }}</h5>
                                 </td>
                                 <td>
                                     <p class="card-text">{{ $course->description }}</p>
+                                </td>
+                                <td>
+                                    <div class="btn-group">
+
+                                        <a href="{{ route('course.edit', $course->id) }}"
+                                            class="btn btn-success">Edit</a>
+                                        <form action="{{route('course.soft.delete' , $course->id)}}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                        </form>
+                                    </div>
                                 </td>
 
                             </tr>
