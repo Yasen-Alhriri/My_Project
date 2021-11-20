@@ -177,4 +177,12 @@ class CourseController extends Controller
 
         return redirect()->back();
     }
+
+    // Get All Courses By Category Id
+    public function getCoursesByCategoryId ($id){
+        $courses = Course::where('category', '=', $id)->get();
+        $count = 0 ;
+        // dd($courses);
+        return view('course.categoryCourse.showCourses', compact('courses', 'count'));
+    }
 }

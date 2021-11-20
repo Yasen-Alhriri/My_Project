@@ -22,8 +22,10 @@
                 <div class="row">
 
                     {{-- Soft Delete --}}
-                    <a href="{{ route('course.soft.delete.show') }}" class="btn btn-primary"
-                        aria-current="page">Soft</a>
+                    <div>
+                    <a href="{{ route('course.soft.delete.show') }}" class="btn btn-info"
+                        aria-current="page">Soft Delete</a>
+                    </div>
                         {{--  --}}
 
                     <table class="table table-hover container">
@@ -61,8 +63,10 @@
                                             <form action="{{route('course.soft.delete' , $category->id)}}" method="post">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                                <button type="submit" class="btn btn-danger">Soft Delete</button>
                                             </form>
+                                            <a href="{{ route('categoryCourse.get.courses.by.category', $category->id) }}"
+                                                class="btn btn-success">Show Courses</a>
                                         </div>
                                     </td>
                                 </tr>

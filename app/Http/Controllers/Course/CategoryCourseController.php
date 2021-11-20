@@ -121,8 +121,10 @@ class CategoryCourseController extends Controller
      * @param  \App\Models\CategoryCourse  $categoryCourse
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CategoryCourse $categoryCourse)
+    public function destroy($id)
     {
-        //
+        $categoryCourse = CategoryCourse::where('id', '=', $id)->first();
+        $categoryCourse->delete();
+        return redirect()->back();
     }
 }

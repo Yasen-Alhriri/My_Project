@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Product;
+
 use App\Http\Controllers\Controller;
 use App\Models\Product\Product;
 use App\Models\Product\CategoryProduct;
@@ -16,17 +17,16 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::latest(
-        'name',
-        'description',
-        'image',
-        'price',
-        'size',
-    	'unit',
-        'count_visits',
+            'name',
+            'description',
+            'image',
+            'price',
+            'size',
+            'unit',
+            'count_visits',
         )->paginate(4);
-        $count=0;
-    return view('product.product.index', compact('products','count'))->with('i', (request()->input('page', 1) - 1) * 5);
-
+        $count = 0;
+        return view('product.product.index', compact('products', 'count'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -49,7 +49,6 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-
     }
 
     /**
@@ -60,7 +59,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $product = Product::where('id','=',$id)->first();
+        $product = Product::where('id', '=', $id)->first();
 
         return view('product.product.show', compact('product'));
     }
@@ -73,7 +72,7 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $product = Product::where('id','=',$id)->first();
+        $product = Product::where('id', '=', $id)->first();
         return view('product.edit', compact('product'));
     }
 
@@ -84,9 +83,9 @@ class ProductController extends Controller
      * @param  \App\Models\Product\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
-        $product = Product::where('id','=',$id)->first();
+        $product = Product::where('id', '=', $id)->first();
         $product->name = $request->input('product_name');
         $product->description = $request->input('product_description');
         $product->price = $request->input('price_product');
@@ -100,10 +99,9 @@ class ProductController extends Controller
 
             $file = $request->file('image');
             $extention = $file->getClientOriginalExtension();
-            $filename = time().'.'.$extention ;
-            $file->move('image/course/' , $filename);
+            $filename = time() . '.' . $extention;
+            $file->move('image/course/', $filename);
             $product->image = $filename;
-
         }
 
         $product->update();
@@ -149,8 +147,8 @@ class ProductController extends Controller
     public function backFromSoftDelete($id)
     {
 
-        $product = Product::onlyTrashed()->where('id' , $id)->first()->restore() ;
-      //  dd($product);
+        $product = Product::onlyTrashed()->where('id', $id)->first()->restore();
+        //  dd($product);
 
         return redirect()->back();
     }

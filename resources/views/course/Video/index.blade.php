@@ -22,9 +22,11 @@
                 <div class="row">
 
                     {{-- Soft Delete --}}
-                    <a href="{{ route('course.soft.delete.show') }}" class="btn btn-primary"
-                        aria-current="page">Soft</a>
-                        {{--  --}}
+                    <div>
+                        <a href="{{ route('course.soft.delete.show') }}" class="btn btn-info" aria-current="page">Soft
+                            Delete</a>
+                    </div>
+                    {{--  --}}
 
                     <table class="table table-hover container">
                         <thead>
@@ -38,7 +40,7 @@
 
 
                         <tbody>
-                                @foreach ($videos as $video)
+                            @foreach ($videos as $video)
                                 <tr>
                                     <th scope="row">
                                         <p>{{ ++$count }}</p>
@@ -53,20 +55,20 @@
                                         {{--  --}}
                                         <div class="btn-group">
 
-                                            <a href="{{ route('video.show', $category->id) }}" class="btn btn-primary"
+                                            <a href="{{ route('video.show', $video->id) }}" class="btn btn-primary"
                                                 aria-current="page">Show</a>
-                                            <a href="{{ route('video.edit', $category->id) }}"
+                                            <a href="{{ route('video.edit', $video->id) }}"
                                                 class="btn btn-success">Edit</a>
-                                            <form action="{{route('course.soft.delete' , $category->id)}}" method="post">
+                                            <form action="{{ route('course.soft.delete', $video->id) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                                <button type="submit" class="btn btn-danger">Soft Delete</button>
                                             </form>
                                         </div>
                                     </td>
                                 </tr>
-                                @endforeach
-                            </tbody>
+                            @endforeach
+                        </tbody>
                     </table>
 
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Course;
 
 use App\Http\Controllers\Controller;
 use App\Models\Course\Video;
+use App\Models\Course\Course;
 use Illuminate\Http\Request;
 
 class VideoController extends Controller
@@ -21,7 +22,9 @@ class VideoController extends Controller
             'name',
             'video_Order'
         )->paginate(4);
-        return view('course.Video.index', compact('videos'));
+
+        $count =0 ;
+        return view('course.Video.index', compact('videos' , 'count'));
     }
 
     /**
@@ -31,7 +34,8 @@ class VideoController extends Controller
      */
     public function create()
     {
-        return view('course.Video.create');
+        $courses = Course::all();
+        return view('course.Video.create', compact('courses'));
     }
 
     /**
@@ -118,8 +122,18 @@ class VideoController extends Controller
      * @param  \App\Models\Course\Video  $video
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Video $video)
+    public function destroy($id)
     {
-        //
+        $video = Video::where('id', '=', $id)->first();
+        $video->delete();
+        return redirect()->back();
+    }
+
+
+    public function getVideosByCourseId ($id){
+        $videos = Video::where('id_course', '=', $id)->get();
+        $count = 0 ;
+        // dd($courses);
+        return view('course.course.showVideos', compact('videos', 'count'));
     }
 }

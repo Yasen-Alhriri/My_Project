@@ -26,13 +26,13 @@
             <input type="text" class="form-control" name="video_Order" required>
             <label for="floatingInput">Video Order</label>
         </div>
-        {{-- <div class="form-floating mb-3">
-            <select class="form-select" aria-label="Disabled select example" name="category" >
-                @foreach ( $categories as $category )
-                <option value="{{$category->id}}">{{$category->name}}</option>
+        <div class="form-floating mb-3">
+            <select class="form-select" aria-label="Disabled select example" name="id_course">
+                @foreach ($courses as $course)
+                    <option value="{{ $course->id }}">{{ $course->name }}</option>
                 @endforeach
             </select>
-        </div> --}}
+        </div>
 
         <button type="submit" class="btn btn-primary">Save Video</button>
         <a href="{{ route('video.index') }}" class="btn btn-secondary" aria-current="page">Back</a>

@@ -126,6 +126,9 @@ class CategoryProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $categoryProduct = CategoryProduct::where('id', '=', $id)->first();
+        $categoryProduct->delete();
+        return redirect()->back();
     }
+
 }

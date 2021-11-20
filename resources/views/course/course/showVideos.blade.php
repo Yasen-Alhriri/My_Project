@@ -1,9 +1,5 @@
 @extends('layouts.layout')
 
-
-@section('title', 'Show Video')
-@section('PageName', 'Shoe Video')
-
 @section('content')
 
 
@@ -11,6 +7,13 @@
     <div class="alert alert-info container w-50" role="alert">
         <a href="{{ route('video.create') }}" class="btn btn-primary btn-lg ">Add video to Course</a>
         <span>Clic to add Video to Course</span>
+
+        <div>
+
+            <a href="{{ route('Course.index') }}" class="btn btn-secondary" aria-current="page">Back</a>
+
+        </div>
+
     </div>
 
 
@@ -26,11 +29,8 @@
                 <div class="row">
 
                     {{-- Soft Delete --}}
-                    <div>
                     <a href="{{ route('course.soft.delete.show') }}" class="btn btn-primary"
-                        aria-current="page">Soft Delete</a>
-                        <a href="{{ route('video.index') }}" class="btn btn-secondary" aria-current="page">Back</a>
-                    </div>
+                        aria-current="page">Soft</a>
                         {{--  --}}
 
                     <table class="table table-hover container">
@@ -45,8 +45,10 @@
 
 
                         <tbody>
+                                @foreach ($videos as $video)
                                 <tr>
                                     <th scope="row">
+                                        <p>{{ ++$count }}</p>
                                     </th>
                                     <td>
                                         <h5 class="card-title">{{ $video->name }}</h5>
@@ -58,11 +60,11 @@
                                         {{--  --}}
                                         <div class="btn-group">
 
-                                            <a href="{{ route('video.show', $video->id) }}" class="btn btn-primary"
+                                            <a href="{{ route('video.show', $category->id) }}" class="btn btn-primary"
                                                 aria-current="page">Show</a>
-                                            <a href="{{ route('video.edit', $video->id) }}"
+                                            <a href="{{ route('video.edit', $category->id) }}"
                                                 class="btn btn-success">Edit</a>
-                                            <form action="{{route('course.soft.delete' , $video->id)}}" method="post">
+                                            <form action="{{route('course.soft.delete' , $category->id)}}" method="post">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger">Delete</button>
@@ -70,6 +72,7 @@
                                         </div>
                                     </td>
                                 </tr>
+                                @endforeach
                             </tbody>
                     </table>
 
@@ -82,5 +85,5 @@
 
 
 
-
+        {{-- {{ $videos->links() }} --}}
     @endsection

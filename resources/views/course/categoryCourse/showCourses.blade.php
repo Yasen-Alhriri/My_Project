@@ -1,16 +1,19 @@
 @extends('layouts.layout')
 
-
-@section('title', 'Show Video')
-@section('PageName', 'Shoe Video')
-
 @section('content')
 
 
     <!--  -->
     <div class="alert alert-info container w-50" role="alert">
-        <a href="{{ route('video.create') }}" class="btn btn-primary btn-lg ">Add video to Course</a>
-        <span>Clic to add Video to Course</span>
+        <a href="{{ route('course.create') }}" class="btn btn-primary btn-lg ">Add Course</a>
+        <span>Clic to add course</span>
+
+        <div>
+
+            <a href="{{ route('Course.index') }}" class="btn btn-secondary" aria-current="page">Back</a>
+
+        </div>
+
     </div>
 
 
@@ -18,8 +21,9 @@
 
 
 
+
     <!--  -->
-    <div class="col-lg-7 mb-lg-0 mb-4" style="width: auto;">
+    <div class="col-lg-7 mb-lg-0 mb-4 container" style="width: auto;">
 
         <div class="card">
             <div class="card-body p-3">
@@ -27,9 +31,8 @@
 
                     {{-- Soft Delete --}}
                     <div>
-                    <a href="{{ route('course.soft.delete.show') }}" class="btn btn-primary"
-                        aria-current="page">Soft Delete</a>
-                        <a href="{{ route('video.index') }}" class="btn btn-secondary" aria-current="page">Back</a>
+                        <a href="{{ route('course.soft.delete.show') }}" class="btn btn-info"
+                            aria-current="page">Soft Delete</a>
                     </div>
                         {{--  --}}
 
@@ -37,39 +40,45 @@
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
+                                <th scope="col">Image</th>
                                 <th scope="col">Name</th>
-                                <th scope="col">video Order</th>
                                 <th scope="col">Handle</th>
                             </tr>
                         </thead>
 
 
                         <tbody>
+                                @foreach ($courses as $course)
                                 <tr>
                                     <th scope="row">
+                                        <p>{{ ++$count }}</p>
                                     </th>
                                     <td>
-                                        <h5 class="card-title">{{ $video->name }}</h5>
+                                        <img src="{{ asset('image/course/' . $course->image) }}" class="card-img-top"
+                                            alt="..." width="50px" height="50px">
                                     </td>
                                     <td>
-                                        <h5 class="card-title">{{ $video->video_Order }}</h5>
+                                        <h5 class="card-title">{{ $course->name }}</h5>
                                     </td>
                                     <td>
                                         {{--  --}}
                                         <div class="btn-group">
 
-                                            <a href="{{ route('video.show', $video->id) }}" class="btn btn-primary"
+                                            <a href="{{ route('course.show', $course->id) }}" class="btn btn-primary"
                                                 aria-current="page">Show</a>
-                                            <a href="{{ route('video.edit', $video->id) }}"
+                                            <a href="{{ route('course.edit', $course->id) }}"
                                                 class="btn btn-success">Edit</a>
-                                            <form action="{{route('course.soft.delete' , $video->id)}}" method="post">
+                                            <form action="{{route('course.soft.delete' , $course->id)}}" method="post">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger">Delete</button>
                                             </form>
+                                            <a href="{{ route('course.get.video.by.course', $course->id) }}"
+                                                class="btn btn-success">Show Videos</a>
                                         </div>
                                     </td>
                                 </tr>
+                                @endforeach
                             </tbody>
                     </table>
 
@@ -82,5 +91,5 @@
 
 
 
-
+        {{-- {{ $courses->links() }} --}}
     @endsection

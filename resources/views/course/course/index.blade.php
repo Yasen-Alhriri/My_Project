@@ -65,9 +65,10 @@
                                             <form action="{{route('course.soft.delete' , $course->id)}}" method="post">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                                <button type="submit" class="btn btn-danger">Soft Delete</button>
                                             </form>
-
+                                            <a href="{{ route('course.get.video.by.course', $course->id) }}"
+                                                class="btn btn-success">Show Videos</a>
                                         </div>
                                     </td>
                                 </tr>
