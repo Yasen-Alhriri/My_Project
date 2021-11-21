@@ -21,12 +21,7 @@
             <div class="card-body p-3">
                 <div class="row">
 
-                    {{-- Soft Delete --}}
-                    <div>
-                        <a href="{{ route('course.soft.delete.show') }}" class="btn btn-info" aria-current="page">Soft
-                            Delete</a>
-                    </div>
-                    {{--  --}}
+                   
 
                     <table class="table table-hover container">
                         <thead>

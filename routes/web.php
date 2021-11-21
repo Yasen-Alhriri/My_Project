@@ -88,10 +88,10 @@ Route::namespace('Course')->group(function () {
 
 
 //Product
-Route::namespace('product')->group(function(){
+Route::namespace('product')->group(function () {
 
     // Category Product
-    Route::prefix('categoryProduct')->group(function(){
+    Route::prefix('categoryProduct')->group(function () {
 
         Route::get('/categoryProduct', [CategoryProductController::class, 'index'])->name('categoryProduct.index');
         Route::get('/create', [CategoryProductController::class, 'create'])->name('categoryProduct.create');
@@ -106,15 +106,14 @@ Route::namespace('product')->group(function(){
         //
 
     });
-    
+
     // Product
-    Route::prefix('product')->group(function(){
+    Route::prefix('product')->group(function () {
 
         Route::get('/product', [ProductController::class, 'index'])->name('product.index');
         Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
         // Soft Delete
         Route::delete('/soft-delete/{id}', [ProductController::class, 'softDelete'])->name('product.soft.delete');
         Route::get('/soft-delete/show', [ProductController::class, 'softDeleteShow'])->name('product.soft.delete.show');
-
     });
 });
