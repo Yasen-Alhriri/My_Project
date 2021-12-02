@@ -116,6 +116,7 @@ Route::namespace('product')->group(function () {
         Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
         // Soft Delete
         Route::delete('/soft-delete/{id}', [ProductController::class, 'softDelete'])->name('product.soft.delete');
+        Route::get('/back-soft-delete/{id}', [ProductController::class, 'backFromSoftDelete'])->name('product.back.soft.delete');
         Route::get('/soft-delete/show', [ProductController::class, 'softDeleteShow'])->name('product.soft.delete.show');
     });
 });

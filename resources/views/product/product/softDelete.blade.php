@@ -57,6 +57,8 @@
 
                                             <a href="{{ route('product.show', $product->id) }}" class="btn btn-primary"
                                                 aria-current="page">Show</a>
+                                            <a href="{{ route('product.back.soft.delete', $product->id) }}" class="btn btn-primary"
+                                                aria-current="page">Back</a>
                                             <form action="{{route('course.soft.delete' , $product->id)}}" method="post">
                                                 @csrf
                                                 @method('DELETE')

@@ -11,8 +11,6 @@ class Product extends Model
 {
     use HasFactory;
 
-    use SoftDeletes;
-    protected $detes = ['deleted_at'];
 
     protected $table = 'products';
 
