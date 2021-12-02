@@ -1,5 +1,7 @@
 @extends('layouts.layout')
 
+@section('PageName', 'Course')
+
 @section('content')
 
 
@@ -64,7 +66,6 @@
                                                 class="btn btn-success">Edit</a>
                                             <form action="{{route('course.soft.delete' , $course->id)}}" method="post">
                                                 @csrf
-                                                @method('DELETE')
                                                 <button type="submit" class="btn btn-danger">Soft Delete</button>
                                             </form>
                                             <a href="{{ route('course.get.video.by.course', $course->id) }}"

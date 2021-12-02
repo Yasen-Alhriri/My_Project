@@ -16,7 +16,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::latest(
+        $products = Product::where('deleted_at', '=', '0')->latest(
             'name',
             'description',
             'image',
@@ -123,7 +123,22 @@ class ProductController extends Controller
 
     public function softDelete($id)
     {
-        $product = Product::find($id)->delete();
+        $product = Product::find($id);
+        $product->deleted_at = 1;
+        $product->update();
+        return redirect()->back();
+    }
+
+    //
+    public function backFromSoftDelete($id)
+    {
+
+        $product = Product::where('id', '=', $id)->first();
+        $product->deleted_at = 0;
+        $product->save();
+
+        //  dd($product);
+
         return redirect()->back();
     }
 
@@ -134,7 +149,7 @@ class ProductController extends Controller
      */
     public function softDeleteShow()
     {
-        $products = Product::onlyTrashed()->latest(
+        $products = Product::where('deleted_at', '=', '1')->latest(
             'name',
             'presenter',
             'description',
@@ -142,14 +157,5 @@ class ProductController extends Controller
         )->paginate(4);
         $count = 0;
         return view('product.product.softDelete', compact('products', 'count'))->with('i', (request()->input('page', 1) - 1) * 5);
-    }
-
-    public function backFromSoftDelete($id)
-    {
-
-        $product = Product::onlyTrashed()->where('id', $id)->first()->restore();
-        //  dd($product);
-
-        return redirect()->back();
     }
 }

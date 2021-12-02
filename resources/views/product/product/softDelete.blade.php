@@ -1,7 +1,9 @@
 @extends('layouts.layout')
 
 
-@section('title','Soft Delete Courses')
+@section('title','Soft Delete Product')
+@section('PageName', 'Soft Delete Product')
+
 @section('content')
 
 

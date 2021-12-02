@@ -13,8 +13,6 @@ class Course extends Model
     // لأستخدام soft delete
     // يجب طلب     use Illuminate\Database\Eloquent\SoftDeletes;      {and}      use SoftDeletes;
 
-    use SoftDeletes;
-    protected $detes = ['deleted_at'];
 
 
 

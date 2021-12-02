@@ -1,5 +1,7 @@
 @extends('layouts.layout')
 
+@section('PageName', 'Category Course')
+
 @section('content')
 
 
@@ -21,12 +23,8 @@
             <div class="card-body p-3">
                 <div class="row">
 
-                    {{-- Soft Delete --}}
-                    <div>
-                    <a href="{{ route('course.soft.delete.show') }}" class="btn btn-info"
-                        aria-current="page">Soft Delete</a>
-                    </div>
-                        {{--  --}}
+
+                    {{--  --}}
 
                     <table class="table table-hover container">
                         <thead>
@@ -40,7 +38,7 @@
 
 
                         <tbody>
-                                @foreach ($categories as $category)
+                            @foreach ($categories as $category)
                                 <tr>
                                     <th scope="row">
                                         <p>{{ ++$count }}</p>
@@ -56,22 +54,22 @@
                                         {{--  --}}
                                         <div class="btn-group">
 
-                                            <a href="{{ route('categoryCourse.show', $category->id) }}" class="btn btn-primary"
-                                                aria-current="page">Show</a>
+                                            <a href="{{ route('categoryCourse.show', $category->id) }}"
+                                                class="btn btn-primary" aria-current="page">Show</a>
                                             <a href="{{ route('categoryCourse.edit', $category->id) }}"
                                                 class="btn btn-success">Edit</a>
-                                            <form action="{{route('course.soft.delete' , $category->id)}}" method="post">
+                                            <form action="{{ route('course.soft.delete', $category->id) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger">Soft Delete</button>
+                                                <button type="submit" class="btn btn-danger">Delete</button>
                                             </form>
                                             <a href="{{ route('categoryCourse.get.courses.by.category', $category->id) }}"
                                                 class="btn btn-success">Show Courses</a>
                                         </div>
                                     </td>
                                 </tr>
-                                @endforeach
-                            </tbody>
+                            @endforeach
+                        </tbody>
                     </table>
 
 

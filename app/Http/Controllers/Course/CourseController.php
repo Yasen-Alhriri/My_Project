@@ -16,7 +16,7 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $courses = Course::latest(
+        $courses = Course::where('deleted_at' , '=' , '0')->latest(
             'name',
             'presenter',
             'description',
@@ -59,6 +59,7 @@ class CourseController extends Controller
         $course->presenter = $request->input('course_presenter');
         $course->description = $request->input('course_description');
         $course->category = $request->input('category');
+        $course->deleted_at = 0;
 
 
         if ($request->hasFile('image')) {
@@ -128,7 +129,7 @@ class CourseController extends Controller
         }
 
         $course->update();
-        return redirect()->route('course.index');
+        return redirect()->route('Course.index');
     }
 
     /**
@@ -147,7 +148,21 @@ class CourseController extends Controller
 
     public function softDelete($id)
     {
-        $course = Course::find($id)->delete();
+        $course = Course::find($id);
+        $course->deleted_at = 1 ;
+        $course->update();
+        return redirect()->back();
+    }
+
+    //
+    public function backFromSoftDelete($id)
+    {
+        //  dd($product);
+
+        $course = Course::where('id', '=', $id)->first();
+        $course->deleted_at = 0 ;
+        $course->save();
+
         return redirect()->back();
     }
 
@@ -158,7 +173,7 @@ class CourseController extends Controller
      */
     public function softDeleteShow()
     {
-        $courses = Course::onlyTrashed()->latest(
+        $courses = Course::where('deleted_at' , '=' , '1')->latest(
             'name',
             'presenter',
             'description',
@@ -168,15 +183,6 @@ class CourseController extends Controller
         return view('course.course.softDelete', compact('courses', 'count'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
-    public function backFromSoftDelete($id)
-    {
-
-
-        $course = Course::onlyTrashed()->where('id' , $id)->first()->restore() ;
-      //  dd($product);
-
-        return redirect()->back();
-    }
 
     // Get All Courses By Category Id
     public function getCoursesByCategoryId ($id){

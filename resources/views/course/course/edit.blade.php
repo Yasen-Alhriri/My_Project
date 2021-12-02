@@ -1,6 +1,7 @@
 @extends('layouts.layout')
 
 @section('title','Edit Course')
+@section('PageName', 'Edit Course')
 
 @section('content')
 
@@ -21,7 +22,7 @@
           <label for="floatingInput">Course description</label>
         </div>
         <div class="form-floating mb-3">
-            <input type="file" class="form-control" id="floatingInput" name="image" placeholder="Course" required>
+            <input type="file" class="form-control" id="floatingInput" name="image" placeholder="Course">
             <label for="floatingInput">Course image</label>
           </div>
 

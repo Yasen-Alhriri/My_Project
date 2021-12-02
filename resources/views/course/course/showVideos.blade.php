@@ -1,5 +1,7 @@
 @extends('layouts.layout')
 
+@section('PageName', 'Show Videos Course')
+
 @section('content')
 
 

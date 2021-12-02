@@ -1,5 +1,7 @@
 @extends('layouts.layout')
 
+@section('PageName', 'Video')
+
 @section('content')
 
 
@@ -21,7 +23,7 @@
             <div class="card-body p-3">
                 <div class="row">
 
-                   
+
 
                     <table class="table table-hover container">
                         <thead>
@@ -57,7 +59,7 @@
                                             <form action="{{ route('course.soft.delete', $video->id) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger">Soft Delete</button>
+                                                <button type="submit" class="btn btn-danger">Delete</button>
                                             </form>
                                         </div>
                                     </td>

@@ -1,5 +1,7 @@
 @extends('layouts.layout')
 
+@section('PageName', 'Category Product')
+
 @section('content')
 
 
@@ -21,11 +23,7 @@
             <div class="card-body p-3">
                 <div class="row">
 
-                    {{-- Soft Delete --}}
-                    <div>
-                        <a href="{{ route('product.soft.delete.show') }}" class="btn btn-info" aria-current="page">Soft
-                            Delete</a>
-                    </div>
+
                     {{--  --}}
 
                     <table class="table table-hover container">
@@ -63,7 +61,7 @@
                                             <form action="{{route('course.soft.delete' , $category->id)}}" method="post">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger">Soft Delete</button>
+                                                <button type="submit" class="btn btn-danger">Delete</button>
                                             </form>
                                         </div>
                                     </td>

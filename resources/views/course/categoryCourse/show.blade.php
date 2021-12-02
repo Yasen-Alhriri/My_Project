@@ -8,29 +8,27 @@
 
 
 
-<div class="col-lg-7 mb-lg-0 mb-4" style="width: auto;">
+    <div class="col-lg-7 mb-lg-0 mb-4" style="width: auto;">
 
-    <div class="card">
-        <div class="card-body p-3">
-            <div class="row">
+        <div class="card">
+            <div class="card-body p-3">
+                <div class="row">
 
-                {{-- Soft Delete --}}
-                <a href="{{ route('course.soft.delete.show') }}" class="btn btn-primary"
-                    aria-current="page">Soft</a>
+
                     {{--  --}}
 
-                <table class="table table-hover container">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Image</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Handle</th>
-                        </tr>
-                    </thead>
+                    <table class="table table-hover container">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Image</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Handle</th>
+                            </tr>
+                        </thead>
 
 
-                    <tbody>
+                        <tbody>
                             <tr>
                                 <th scope="row">
                                 </th>
@@ -45,11 +43,10 @@
                                     {{--  --}}
                                     <div class="btn-group">
 
-                                        <a href="{{ route('course.show', $category->id) }}" class="btn btn-primary"
-                                            aria-current="page">Show</a>
+                                        
                                         <a href="{{ route('course.edit', $category->id) }}"
                                             class="btn btn-success">Edit</a>
-                                        <form action="{{route('course.soft.delete' , $category->id)}}" method="post">
+                                        <form action="{{ route('course.soft.delete', $category->id) }}" method="post">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger">Delete</button>
@@ -58,14 +55,14 @@
                                 </td>
                             </tr>
                         </tbody>
-                </table>
+                    </table>
 
 
 
 
+                </div>
             </div>
         </div>
-    </div>
+        <a href="{{ route('categoryCourse.index') }}" class="btn btn-secondary" aria-current="page">Back</a>
 
-
-@endsection
+    @endsection

@@ -25,13 +25,8 @@
             <div class="card-body p-3">
                 <div class="row">
 
-                    {{-- Soft Delete --}}
-                    <div>
-                    <a href="{{ route('course.soft.delete.show') }}" class="btn btn-primary"
-                        aria-current="page">Soft Delete</a>
-                        <a href="{{ route('video.index') }}" class="btn btn-secondary" aria-current="page">Back</a>
-                    </div>
-                        {{--  --}}
+
+                    {{--  --}}
 
                     <table class="table table-hover container">
                         <thead>
@@ -45,32 +40,30 @@
 
 
                         <tbody>
-                                <tr>
-                                    <th scope="row">
-                                    </th>
-                                    <td>
-                                        <h5 class="card-title">{{ $video->name }}</h5>
-                                    </td>
-                                    <td>
-                                        <h5 class="card-title">{{ $video->video_Order }}</h5>
-                                    </td>
-                                    <td>
-                                        {{--  --}}
-                                        <div class="btn-group">
+                            <tr>
+                                <th scope="row">
+                                </th>
+                                <td>
+                                    <h5 class="card-title">{{ $video->name }}</h5>
+                                </td>
+                                <td>
+                                    <h5 class="card-title">{{ $video->video_Order }}</h5>
+                                </td>
+                                <td>
+                                    {{--  --}}
+                                    <div class="btn-group">
 
-                                            <a href="{{ route('video.show', $video->id) }}" class="btn btn-primary"
-                                                aria-current="page">Show</a>
-                                            <a href="{{ route('video.edit', $video->id) }}"
-                                                class="btn btn-success">Edit</a>
-                                            <form action="{{route('course.soft.delete' , $video->id)}}" method="post">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger">Delete</button>
-                                            </form>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
+
+                                        <a href="{{ route('video.edit', $video->id) }}" class="btn btn-success">Edit</a>
+                                        <form action="{{ route('course.soft.delete', $video->id) }}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
                     </table>
 
 
@@ -80,7 +73,7 @@
             </div>
         </div>
 
-
+        <a href="{{ route('video.index') }}" class="btn btn-secondary" aria-current="page">Back</a>
 
 
     @endsection

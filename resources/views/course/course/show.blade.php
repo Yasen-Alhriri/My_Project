@@ -2,6 +2,7 @@
 
 
 @section('title', 'Show Course')
+@section('PageName', 'Show Course')
 
 @section('content')
 
@@ -27,6 +28,7 @@
                                 <th scope="col">#</th>
                                 <th scope="col">Image</th>
                                 <th scope="col">Name</th>
+                                <th scope="col">Presenter</th>
                                 <th scope="col">Description</th>
                                 <th scope="col">Handle</th>
                             </tr>
@@ -40,11 +42,14 @@
                                 </th>
                                 <td>
                                     <img src="{{ asset('image/course/' . $course->image) }}" class="card-img-top"
-                                    alt="..." width="50px" height="50px">
+                                        alt="..." width="50px" height="50px">
 
                                 </td>
                                 <td>
                                     <h5 class="card-title">{{ $course->name }}</h5>
+                                </td>
+                                <td>
+                                    <p class="card-title">{{ $course->presenter }}</p>
                                 </td>
                                 <td>
                                     <p class="card-text">{{ $course->description }}</p>
@@ -52,9 +57,8 @@
                                 <td>
                                     <div class="btn-group">
 
-                                        <a href="{{ route('course.edit', $course->id) }}"
-                                            class="btn btn-success">Edit</a>
-                                        <form action="{{route('course.soft.delete' , $course->id)}}" method="post">
+                                        <a href="{{ route('course.edit', $course->id) }}" class="btn btn-success">Edit</a>
+                                        <form action="{{ route('course.soft.delete', $course->id) }}" method="post">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger">Delete</button>

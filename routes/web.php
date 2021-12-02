@@ -64,9 +64,11 @@ Route::namespace('Course')->group(function () {
         Route::get('/show/{id}', [CourseController::class, 'show'])->name('course.show');
         Route::get('/edit/{id}', [CourseController::class, 'edit'])->name('course.edit');
         Route::put('/update/{id}', [CourseController::class, 'update'])->name('course.update');
+        Route::delete('/update/{id}', [CourseController::class, 'destroy'])->name('course.delete');
 
         // Soft Delete
-        Route::delete('/soft-delete/{id}', [CourseController::class, 'softDelete'])->name('course.soft.delete');
+        Route::post('/soft-delete/{id}', [CourseController::class, 'softDelete'])->name('course.soft.delete');
+        Route::get('/back-soft-delete/{id}', [CourseController::class, 'backFromSoftDelete'])->name('course.back.soft.delete');
         Route::get('/soft-delete/show', [CourseController::class, 'softDeleteShow'])->name('course.soft.delete.show');
 
 

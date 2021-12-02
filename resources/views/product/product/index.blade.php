@@ -1,5 +1,8 @@
 @extends('layouts.layout')
 
+@section('title','Product')
+@section('PageName', 'Product')
+
 @section('content')
 
 
