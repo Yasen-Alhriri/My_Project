@@ -13,8 +13,6 @@ class User extends Model
 
     protected $table = 'users';
 
-    use SoftDeletes;
-    protected $detes = ['deleted_at'];
 
     public $timestamps = false;
     protected $fillable = [
@@ -29,6 +27,7 @@ class User extends Model
         'gender',
         'phone ',
         'location',
+        'deleted_at',
         'create_date'
     ];
 

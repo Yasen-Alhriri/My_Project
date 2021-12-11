@@ -26,6 +26,7 @@ class Product extends Model
         'discount',
         'discount_date',
         'status',
+        'deleted_at',
         'product_date',
         'category ',
         'id_user'

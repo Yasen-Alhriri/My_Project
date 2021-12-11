@@ -15,6 +15,12 @@ use App\Http\Controllers\Course\VideoController;
 use App\Http\Controllers\Product\CategoryProductController;
 use App\Http\Controllers\Product\ProductController;
 
+// Folder Notification
+use App\Http\Controllers\notification\NotificationCourseController;
+use App\Http\Controllers\notification\NotificationUserController;
+use App\Http\Controllers\notification\NotificationProductController;
+use App\Http\Controllers\notification\NotificationReportVideoController;
+
 //
 /*
 |--------------------------------------------------------------------------
@@ -119,4 +125,33 @@ Route::namespace('product')->group(function () {
         Route::get('/back-soft-delete/{id}', [ProductController::class, 'backFromSoftDelete'])->name('product.back.soft.delete');
         Route::get('/soft-delete/show', [ProductController::class, 'softDeleteShow'])->name('product.soft.delete.show');
     });
+});
+
+// Notification
+
+Route::namespace('notification')->group(function(){
+
+    //
+    Route::get('/notification', function(){
+        return view('notification.index');
+    })->name('notification');
+
+    // User
+    Route::group([],function(){
+
+        Route::get('/user-notification', [NotificationUserController::class, 'addUser'])->name('user.add.notification');
+        Route::get('/user-acceptance/{id}', [NotificationUserController::class, 'userAcceptance'])->name('user.acceptance.notification');
+        Route::get('/user-refused/{id}', [NotificationUserController::class, 'userRefused'])->name('user.refused.notification');
+    });
+
+    // Product
+    Route::group([],function(){
+
+        Route::get('/product-notification', [NotificationProductController::class, 'addProduct'])->name('product.add.notification');
+        Route::get('/product-acceptance/{id}', [NotificationProductController::class, 'productAcceptance'])->name('product.acceptance.notification');
+        Route::get('/product-refused/{id}', [NotificationProductController::class, 'productRefused'])->name('product.refused.notification');
+    });
+
+    // Report
+    Route::get('/report-notification', [NotificationReportVideoController::class, 'report'])->name('report.notification');
 });
