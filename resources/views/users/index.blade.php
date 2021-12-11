@@ -1,9 +1,8 @@
 @extends('layouts.layout')
 
-@section('PageName', 'Category Product')
+@section('PageName', 'User')
 
 @section('content')
-
 
 
 
@@ -13,8 +12,11 @@
         <div class="card">
             <div class="card-body p-3">
 
-                <a href="{{ route('categoryProduct.create') }}" class="btn btn-primary">Add Category Product</a>
-
+                    {{-- Soft Delete --}}
+                    <div>
+                        <a href="{{ route('user.soft.delete.show') }}" class="btn btn-info" aria-current="page">Soft
+                            Delete</a>
+                    </div>
                     {{--  --}}
 
                     <table class="table table-hover container">
@@ -29,36 +31,38 @@
 
 
                         <tbody>
-                                @foreach ($categories as $category)
+                            @foreach ($users as $user)
                                 <tr>
                                     <th scope="row">
                                         <p>{{ ++$count }}</p>
                                     </th>
                                     <td>
-                                        <img src="{{ asset('image/category/' . $category->image) }}" class="card-img-top"
-                                            alt="..." width="50px" height="50px">
+                                        <h5 class="card-title">{{ $user->f_name }}</h5>
                                     </td>
                                     <td>
-                                        <h5 class="card-title">{{ $category->name }}</h5>
+                                        <h5 class="card-title">{{ $user->l_name }}</h5>
+                                    </td>
+                                    <td>
+                                        <h5 class="card-title">{{ $user->gender }}</h5>
+                                    </td>
+                                    <td>
+                                        <h5 class="card-title">{{ $user->phone }}</h5>
                                     </td>
                                     <td>
                                         {{--  --}}
                                         <div class="btn-group">
-
-                                            <a href="{{ route('categoryProduct.show', $category->id) }}" class="btn btn-primary"
+                                            <a href="{{ route('user.show', $user->id) }}" class="btn btn-primary"
                                                 aria-current="page">Show</a>
-                                            <a href="{{ route('categoryProduct.edit', $category->id) }}"
-                                                class="btn btn-success">Edit</a>
-                                            <form action="{{route('course.soft.delete' , $category->id)}}" method="post">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger">Delete</button>
-                                            </form>
+                                                <form action="{{route('user.soft.delete' , $user->id)}}" method="post">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-danger">Soft Delete</button>
+                                                </form>
+
                                         </div>
                                     </td>
                                 </tr>
-                                @endforeach
-                            </tbody>
+                            @endforeach
+                        </tbody>
                     </table>
 
 
@@ -70,5 +74,5 @@
 
 
 
-        {{ $categories->links() }}
+        {{ $users->links() }}
     @endsection

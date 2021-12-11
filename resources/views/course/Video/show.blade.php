@@ -7,24 +7,16 @@
 @section('content')
 
 
-    <!--  -->
-    <div class="alert alert-info container w-50" role="alert">
-        <a href="{{ route('video.create') }}" class="btn btn-primary btn-lg ">Add video to Course</a>
-        <span>Clic to add Video to Course</span>
-    </div>
-
-
-
 
 
 
     <!--  -->
-    <div class="col-lg-7 mb-lg-0 mb-4" style="width: auto;">
+    <div class="col-lg-7 mb-lg-0 mb-4" style="min-width: fit-content;">
 
         <div class="card">
             <div class="card-body p-3">
-                <div class="row">
 
+                <a href="{{ route('video.index') }}" class="btn btn-secondary" aria-current="page">Back</a>
 
                     {{--  --}}
 
@@ -73,7 +65,6 @@
             </div>
         </div>
 
-        <a href="{{ route('video.index') }}" class="btn btn-secondary" aria-current="page">Back</a>
 
 
     @endsection

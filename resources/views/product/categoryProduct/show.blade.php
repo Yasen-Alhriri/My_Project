@@ -1,22 +1,21 @@
 @extends('layouts.layout')
 
 
-@section('title', 'Show CategoryCourse')
-@section('PageName', 'Show Category Course')
+@section('title', 'Show Category Product')
+@section('PageName', 'Show Category Product')
 
 @section('content')
 
 
 
-<div class="col-lg-7 mb-lg-0 mb-4" style="width: auto;">
+<div class="col-lg-7 mb-lg-0 mb-4" style="min-width: fit-content;">
 
     <div class="card">
         <div class="card-body p-3">
-            <div class="row">
 
                 {{-- Soft Delete --}}
-                <a href="{{ route('course.soft.delete.show') }}" class="btn btn-primary"
-                    aria-current="page">Soft</a>
+                <a href="{{ route('categoryProduct.index') }}" class="btn btn-secondary" aria-current="page">Back</a>
+
                     {{--  --}}
 
                 <table class="table table-hover container">
@@ -45,11 +44,10 @@
                                     {{--  --}}
                                     <div class="btn-group">
 
-                                        <a href="{{ route('course.show', $category->id) }}" class="btn btn-primary"
-                                            aria-current="page">Show</a>
+
                                         <a href="{{ route('course.edit', $category->id) }}"
                                             class="btn btn-success">Edit</a>
-                                        <form action="{{route('course.soft.delete' , $category->id)}}" method="post">
+                                        <form action="{{route('categoryProduct.delete' , $category->id)}}" method="post">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger">Delete</button>

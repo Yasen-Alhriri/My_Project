@@ -8,12 +8,12 @@
 
 
 
-    <div class="col-lg-7 mb-lg-0 mb-4" style="width: auto;">
+<div class="col-lg-7 mb-lg-0 mb-4" style="min-width: fit-content;">
 
-        <div class="card">
-            <div class="card-body p-3">
-                <div class="row">
+    <div class="card">
+        <div class="card-body p-3">
 
+            <a href="{{ route('categoryCourse.index') }}" class="btn btn-secondary" aria-current="page">Back</a>
 
                     {{--  --}}
 
@@ -43,7 +43,7 @@
                                     {{--  --}}
                                     <div class="btn-group">
 
-                                        
+
                                         <a href="{{ route('course.edit', $category->id) }}"
                                             class="btn btn-success">Edit</a>
                                         <form action="{{ route('course.soft.delete', $category->id) }}" method="post">
@@ -63,6 +63,5 @@
                 </div>
             </div>
         </div>
-        <a href="{{ route('categoryCourse.index') }}" class="btn btn-secondary" aria-current="page">Back</a>
 
     @endsection

@@ -22,6 +22,9 @@ use App\Http\Controllers\notification\NotificationProductController;
 use App\Http\Controllers\notification\NotificationReportVideoController;
 
 //
+use App\Http\Controllers\User\UserController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -95,7 +98,7 @@ Route::namespace('Course')->group(function () {
 });
 
 
-//Product
+// Product
 Route::namespace('product')->group(function () {
 
     // Category Product
@@ -107,9 +110,7 @@ Route::namespace('product')->group(function () {
         Route::get('/show/{id}', [CategoryProductController::class, 'show'])->name('categoryProduct.show');
         Route::get('/edit/{id}', [CategoryProductController::class, 'edit'])->name('categoryProduct.edit');
         Route::put('/update/{id}', [CategoryProductController::class, 'update'])->name('categoryProduct.update');
-        // Soft Delete
-        Route::delete('/soft-delete/{id}', [ProductController::class, 'softDelete'])->name('product.soft.delete');
-        Route::get('/soft-delete/show', [ProductController::class, 'softDeleteShow'])->name('product.soft.delete.show');
+        Route::delete('/delete/{id', [CategoryProductController::class, 'destroy'])->name('categoryProduct.delete');
 
         //
 
@@ -128,7 +129,6 @@ Route::namespace('product')->group(function () {
 });
 
 // Notification
-
 Route::namespace('notification')->group(function(){
 
     //
@@ -155,3 +155,19 @@ Route::namespace('notification')->group(function(){
     // Report
     Route::get('/report-notification', [NotificationReportVideoController::class, 'report'])->name('report.notification');
 });
+
+// User
+Route::namespace('user')->group(function(){
+
+    Route::get('/user', [UserController::class, 'index'])->name('user.index');
+
+    Route::prefix('/user')->group(function(){
+
+        Route::get('/user-show/{id}', [UserController::class, 'show'])->name('user.show');
+        // Soft Delete
+        Route::post('/soft-delete/{id}', [UserController::class, 'softDelete'])->name('user.soft.delete');
+        Route::post('/back-soft-delete/{id}', [UserController::class, 'backFromSoftDelete'])->name('user.back.soft.delete');
+        Route::get('/soft-delete/show', [UserController::class, 'softDeleteShow'])->name('user.soft.delete.show');
+    });
+});
+

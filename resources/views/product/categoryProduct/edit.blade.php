@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 
-@section('title', 'Edit categoryProduct')
+@section('title', 'Edit Category Product')
 @section('PageName', 'Edit Category Product')
 
 @section('content')

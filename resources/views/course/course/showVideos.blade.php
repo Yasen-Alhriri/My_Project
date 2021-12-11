@@ -5,35 +5,17 @@
 @section('content')
 
 
-    <!--  -->
-    <div class="alert alert-info container w-50" role="alert">
-        <a href="{{ route('video.create') }}" class="btn btn-primary btn-lg ">Add video to Course</a>
-        <span>Clic to add Video to Course</span>
-
-        <div>
-
-            <a href="{{ route('Course.index') }}" class="btn btn-secondary" aria-current="page">Back</a>
-
-        </div>
-
-    </div>
-
-
-
-
 
 
     <!--  -->
-    <div class="col-lg-7 mb-lg-0 mb-4" style="width: auto;">
+    <div class="col-lg-7 mb-lg-0 mb-4" style="min-width: fit-content;">
 
         <div class="card">
             <div class="card-body p-3">
-                <div class="row">
 
-                    {{-- Soft Delete --}}
-                    <a href="{{ route('course.soft.delete.show') }}" class="btn btn-primary"
-                        aria-current="page">Soft</a>
-                        {{--  --}}
+                <a href="{{ route('Course.index') }}" class="btn btn-secondary" aria-current="page">Back</a>
+                <a href="{{ route('video.create') }}" class="btn btn-primary">Add video to Course</a>
+
 
                     <table class="table table-hover container">
                         <thead>
