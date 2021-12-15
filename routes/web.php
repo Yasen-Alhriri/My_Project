@@ -57,7 +57,7 @@ Route::namespace('Course')->group(function () {
         Route::get('/show/{id}', [CategoryCourseController::class, 'show'])->name('categoryCourse.show');
         Route::get('/edit/{id}', [CategoryCourseController::class, 'edit'])->name('categoryCourse.edit');
         Route::put('/update/{id}', [CategoryCourseController::class, 'update'])->name('categoryCourse.update');
-        Route::put('/delete/{id}', [CategoryCourseController::class, 'destroy'])->name('categoryCourse.delete');
+        Route::delete('/delete/{id}', [CategoryCourseController::class, 'destroy'])->name('categoryCourse.delete');
 
 
         // Get Courses from Category
@@ -73,7 +73,7 @@ Route::namespace('Course')->group(function () {
         Route::get('/show/{id}', [CourseController::class, 'show'])->name('course.show');
         Route::get('/edit/{id}', [CourseController::class, 'edit'])->name('course.edit');
         Route::put('/update/{id}', [CourseController::class, 'update'])->name('course.update');
-        Route::delete('/update/{id}', [CourseController::class, 'destroy'])->name('course.delete');
+        Route::delete('/delete/{id}', [CourseController::class, 'destroy'])->name('course.delete');
 
         // Soft Delete
         Route::post('/soft-delete/{id}', [CourseController::class, 'softDelete'])->name('course.soft.delete');
@@ -94,6 +94,7 @@ Route::namespace('Course')->group(function () {
         Route::get('/show/{id}', [VideoController::class, 'show'])->name('video.show');
         Route::get('/edit/{id}', [VideoController::class, 'edit'])->name('video.edit');
         Route::put('/update/{id}', [VideoController::class, 'update'])->name('video.update');
+        Route::delete('/update/{id}', [VideoController::class, 'destroy'])->name('video.delete');
     });
 });
 
@@ -110,10 +111,10 @@ Route::namespace('product')->group(function () {
         Route::get('/show/{id}', [CategoryProductController::class, 'show'])->name('categoryProduct.show');
         Route::get('/edit/{id}', [CategoryProductController::class, 'edit'])->name('categoryProduct.edit');
         Route::put('/update/{id}', [CategoryProductController::class, 'update'])->name('categoryProduct.update');
-        Route::delete('/delete/{id', [CategoryProductController::class, 'destroy'])->name('categoryProduct.delete');
+        Route::delete('/delete/{id}', [CategoryProductController::class, 'destroy'])->name('categoryProduct.delete');
 
         //
-
+        Route::get('/id/{id}/get-product', [ProductController::class, 'getProductByCategoryId'])->name('categoryProduct.get.product.by.category');
     });
 
     // Product
@@ -129,15 +130,15 @@ Route::namespace('product')->group(function () {
 });
 
 // Notification
-Route::namespace('notification')->group(function(){
+Route::namespace('notification')->group(function () {
 
     //
-    Route::get('/notification', function(){
+    Route::get('/notification', function () {
         return view('notification.index');
     })->name('notification');
 
     // User
-    Route::group([],function(){
+    Route::group([], function () {
 
         Route::get('/user-notification', [NotificationUserController::class, 'addUser'])->name('user.add.notification');
         Route::get('/user-acceptance/{id}', [NotificationUserController::class, 'userAcceptance'])->name('user.acceptance.notification');
@@ -145,7 +146,7 @@ Route::namespace('notification')->group(function(){
     });
 
     // Product
-    Route::group([],function(){
+    Route::group([], function () {
 
         Route::get('/product-notification', [NotificationProductController::class, 'addProduct'])->name('product.add.notification');
         Route::get('/product-acceptance/{id}', [NotificationProductController::class, 'productAcceptance'])->name('product.acceptance.notification');
@@ -157,11 +158,11 @@ Route::namespace('notification')->group(function(){
 });
 
 // User
-Route::namespace('user')->group(function(){
+Route::namespace('user')->group(function () {
 
     Route::get('/user', [UserController::class, 'index'])->name('user.index');
 
-    Route::prefix('/user')->group(function(){
+    Route::prefix('/user')->group(function () {
 
         Route::get('/user-show/{id}', [UserController::class, 'show'])->name('user.show');
         // Soft Delete
@@ -170,4 +171,3 @@ Route::namespace('user')->group(function(){
         Route::get('/soft-delete/show', [UserController::class, 'softDeleteShow'])->name('user.soft.delete.show');
     });
 });
-

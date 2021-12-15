@@ -5,6 +5,16 @@
 
 @section('content')
 
+<!--  -->
+
+
+<div class="col-lg-7 mb-lg-0 mb-4" style="min-width: -webkit-fill-available;">
+
+    {{-- Alert Messages --}}
+    @include('common.alert')
+
+    <div class="card">
+        <div class="card-body p-3">
 
 <form action="{{route('course.update',$course->id)}}" method="post" enctype="multipart/form-data" class="container mt-5">
     @csrf
@@ -25,12 +35,21 @@
             <input type="file" class="form-control" id="floatingInput" name="image" placeholder="Course">
             <label for="floatingInput">Course image</label>
           </div>
+          <div class="form-floating mb-3">
+            <select class="form-select" aria-label="Disabled select example" name="category">
+                <option value="{{ $course->categoryCourse->id }}">{{ $course->categoryCourse->name }}</option>
+                @foreach ($categories as $category)
+                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                @endforeach
+            </select>
+        </div>
 
       <button type="submit" class="btn btn-primary">Save course</button>
       <a href="{{ route('Course.index') }}" class="btn btn-secondary"
       aria-current="page">Back</a>
 </form>
 
+        </div></div></div>
 
 @endsection
 

@@ -15,7 +15,7 @@
 
                     {{--  --}}
 
-                    <table class="table table-hover container">
+                    <table class="table table-hover container"> 
                         <thead>
                             <tr>
                                 <th scope="col">#</th>

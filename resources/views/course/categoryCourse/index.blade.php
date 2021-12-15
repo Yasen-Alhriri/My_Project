@@ -1,5 +1,6 @@
 @extends('layouts.layout')
 
+@section('title', 'Category Course')
 @section('PageName', 'Category Course')
 
 @section('content')
@@ -48,11 +49,11 @@
                                         {{--  --}}
                                         <div class="btn-group">
 
-                                            <a href="{{ route('categoryCourse.show', $category->id) }}"
-                                                class="btn btn-primary" aria-current="page">Show</a>
+                                            {{-- <a href="{{ route('categoryCourse.show', $category->id) }}"
+                                                class="btn btn-primary" aria-current="page">Show</a> --}}
                                             <a href="{{ route('categoryCourse.edit', $category->id) }}"
-                                                class="btn btn-success">Edit</a>
-                                            <form action="{{ route('course.soft.delete', $category->id) }}" method="post">
+                                                class="btn btn-warning">Edit</a>
+                                            <form action="{{ route('categoryCourse.delete', $category->id) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger">Delete</button>

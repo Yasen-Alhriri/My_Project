@@ -26,6 +26,7 @@
                                 <th scope="col">#</th>
                                 <th scope="col">Name</th>
                                 <th scope="col">video Order</th>
+                                <th scope="col">Course</th>
                                 <th scope="col">Handle</th>
                             </tr>
                         </thead>
@@ -42,12 +43,15 @@
                                     <h5 class="card-title">{{ $video->video_Order }}</h5>
                                 </td>
                                 <td>
+                                    <h5 class="card-title">{{ $video->course->name }}</h5>
+                                </td>
+                                <td>
                                     {{--  --}}
                                     <div class="btn-group">
 
 
                                         <a href="{{ route('video.edit', $video->id) }}" class="btn btn-success">Edit</a>
-                                        <form action="{{ route('course.soft.delete', $video->id) }}" method="post">
+                                        <form action="{{ route('video.delete', $video->id) }}" method="post">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger">Delete</button>

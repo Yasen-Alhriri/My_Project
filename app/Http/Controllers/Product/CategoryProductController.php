@@ -128,7 +128,7 @@ class CategoryProductController extends Controller
     {
         $categoryProduct = CategoryProduct::where('id', '=', $id)->first();
         $categoryProduct->delete();
-        return redirect()->back();
+        return redirect()->back()->with('success','Category Product Deleted.');
     }
 
 }

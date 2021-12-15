@@ -158,4 +158,20 @@ class ProductController extends Controller
         $count = 0;
         return view('product.product.softDelete', compact('products', 'count'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
+
+    //
+    public function getProductByCategoryId($id)
+    {
+        $products = Product::where('category','=',$id)->where('deleted_at', '=', '0')->latest(
+            'name',
+            'description',
+            'image',
+            'price',
+            'size',
+            'unit',
+            'count_visits',
+        )->paginate(4);
+        $count = 0;
+        return view('product.categoryProduct.showProduct', compact('products', 'count'))->with('i', (request()->input('page', 1) - 1) * 5);
+    }
 }

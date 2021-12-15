@@ -16,11 +16,12 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $courses = Course::where('deleted_at' , '=' , '0')->latest(
+        $courses = Course::where('deleted_at', '=', '0')->latest(
             'name',
             'presenter',
             'description',
-            'image'
+            'image',
+            'category'
         )->paginate(4);
         $count = 0;
         return view('course.course.index', compact('courses', 'count'))->with('i', (request()->input('page', 1) - 1) * 5);
@@ -101,7 +102,8 @@ class CourseController extends Controller
     public function edit($id)
     {
         $course = Course::where('id', '=', $id)->first();
-        return view('course.course.edit', compact('course'));
+        $categories = CategoryCourse::where('id','<>',$course->category)->get();
+        return view('course.course.edit', compact('course','categories'));
     }
 
     /**
@@ -117,6 +119,7 @@ class CourseController extends Controller
         $course->name = $request->input('course_name');
         $course->presenter = $request->input('course_presenter');
         $course->description = $request->input('course_description');
+        $course->category = $request->input('category');
 
         if ($request->hasFile('image')) {
 
@@ -129,7 +132,7 @@ class CourseController extends Controller
         }
 
         $course->update();
-        return redirect()->route('Course.index');
+        return redirect()->route('Course.index')->with('success', 'Course Update.');
     }
 
     /**
@@ -142,14 +145,22 @@ class CourseController extends Controller
     {
         $course = Course::where('id', '=', $id)->first();
         $course->delete();
-        return redirect()->back();
+        return redirect()->route('Course.index')->with('success', 'Deleted Cousre.');
     }
 
+    // Get All Courses By Category Id
+    public function getCoursesByCategoryId($id)
+    {
+        $courses = Course::where('category', '=', $id)->where('deleted_at', '=', '0')->get();
+        $count = 0;
+        // dd($courses);
+        return view('course.categoryCourse.showCourses', compact('courses', 'count'));
+    }
 
     public function softDelete($id)
     {
         $course = Course::find($id);
-        $course->deleted_at = 1 ;
+        $course->deleted_at = 1;
         $course->update();
         return redirect()->back();
     }
@@ -160,7 +171,7 @@ class CourseController extends Controller
         //  dd($product);
 
         $course = Course::where('id', '=', $id)->first();
-        $course->deleted_at = 0 ;
+        $course->deleted_at = 0;
         $course->save();
 
         return redirect()->back();
@@ -173,7 +184,7 @@ class CourseController extends Controller
      */
     public function softDeleteShow()
     {
-        $courses = Course::where('deleted_at' , '=' , '1')->latest(
+        $courses = Course::where('deleted_at', '=', '1')->latest(
             'name',
             'presenter',
             'description',
@@ -184,11 +195,4 @@ class CourseController extends Controller
     }
 
 
-    // Get All Courses By Category Id
-    public function getCoursesByCategoryId ($id){
-        $courses = Course::where('category', '=', $id)->get();
-        $count = 0 ;
-        // dd($courses);
-        return view('course.categoryCourse.showCourses', compact('courses', 'count'));
-    }
 }

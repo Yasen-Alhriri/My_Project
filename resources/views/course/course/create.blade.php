@@ -8,7 +8,7 @@
     <div class="col-lg-7 mb-lg-0 mb-4 container" style="width: auto;">
 
         <div class="card">
-            <div class="card-body p-3"> 
+            <div class="card-body p-3">
                 <div class="row">
 
                     <form action="{{ route('course.store') }}" method="post" enctype="multipart/form-data"
@@ -28,7 +28,7 @@
                             <label for="floatingInput">Course description</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="file" class="form-control" name="image" required>
+                            <input type="file" class="form-control" name="image">
                             <label for="floatingInput">Course image</label>
                         </div>
                         <div class="form-floating mb-3">

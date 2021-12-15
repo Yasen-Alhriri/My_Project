@@ -31,6 +31,7 @@
                                 <th scope="col">Name</th>
                                 <th scope="col">Presenter</th>
                                 <th scope="col">Description</th>
+                                <th scope="col">Category</th>
                                 <th scope="col">Handle</th>
                             </tr>
                         </thead>
@@ -39,11 +40,11 @@
                         <tbody>
                             <tr>
                                 <th scope="row">
-                                    <p>{{ $course->id }}</p>
+                                    <p>1</p>
                                 </th>
                                 <td>
-                                    <img src="{{ asset('image/course/' . $course->image) }}" class="card-img-top"
-                                        alt="..." width="50px" height="50px">
+                                    <img src="{{ asset('image/course/' . $course->image) }}" class="rounded "
+                                    alt="..." width="70px" height="70px">
 
                                 </td>
                                 <td>
@@ -56,10 +57,13 @@
                                     <p class="card-text">{{ $course->description }}</p>
                                 </td>
                                 <td>
+                                    <p class="card-text">{{ $course->categoryCourse->name }}</p>
+                                </td>
+                                <td>
                                     <div class="btn-group">
 
                                         <a href="{{ route('course.edit', $course->id) }}" class="btn btn-success">Edit</a>
-                                        <form action="{{ route('course.soft.delete', $course->id) }}" method="post">
+                                        <form action="{{ route('course.delete', $course->id) }}" method="post">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger">Delete</button>

@@ -10,18 +10,17 @@ use Illuminate\Http\Request;
 
 class NotificationReportVideoController extends Controller
 {
-    public function report(){
+    public function report()
+    {
 
 
-        $reportVideo=ReportVideo::latest(
+        $reportVideo = ReportVideo::latest(
             'id_user',
-        'id_video',
-        'message'
+            'id_video',
+            'message'
         )->paginate(4);
 
-
         $count = 0;
-     //   dd($reposrtVideo);
         return view('notification.reportVideo', compact('reportVideo', 'count'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 }

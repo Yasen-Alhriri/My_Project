@@ -16,7 +16,7 @@
             <label for="floatingInput">Category Name</label>
         </div>
         <div class="form-floating mb-3">
-            <input type="file" class="form-control" name="image" required>
+            <input type="file" class="form-control" name="image" >
             <label for="floatingInput">Category image</label>
         </div>
 

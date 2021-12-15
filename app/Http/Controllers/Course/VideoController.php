@@ -85,7 +85,8 @@ class VideoController extends Controller
     public function edit($id)
     {
         $video = Video::where('id','=',$id)->first();
-        return view('course.Video.edit', compact('video'));
+        $courses = Course::where('id','<>',$video->id_course)->get();
+        return view('course.Video.edit', compact('video','courses'));
     }
 
     /**
@@ -126,7 +127,7 @@ class VideoController extends Controller
     {
         $video = Video::where('id', '=', $id)->first();
         $video->delete();
-        return redirect()->back();
+        return redirect()->route('video.index')->with('success','Video Deleted.');
     }
 
 
