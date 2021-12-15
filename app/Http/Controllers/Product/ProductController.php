@@ -105,7 +105,7 @@ class ProductController extends Controller
         }
 
         $product->update();
-        return redirect()->route('product.index');
+        return redirect()->route('product.index')->with('success', 'This product has been Update.');
     }
 
     /**
@@ -118,7 +118,7 @@ class ProductController extends Controller
     {
         $product = Product::where('id', '=', $id)->first();
         $product->delete();
-        return redirect()->back();
+        return redirect()->back()->with('success', 'This product has been deleted.');
     }
 
     public function softDelete($id)
@@ -126,7 +126,7 @@ class ProductController extends Controller
         $product = Product::find($id);
         $product->deleted_at = 1;
         $product->update();
-        return redirect()->back();
+        return redirect()->back()->with('success', 'This product has been soft deleted.');
     }
 
     //
@@ -139,7 +139,7 @@ class ProductController extends Controller
 
         //  dd($product);
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'This product has been returned.');
     }
 
     /**

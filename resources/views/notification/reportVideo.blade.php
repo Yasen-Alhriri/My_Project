@@ -15,12 +15,14 @@
 
                     {{--  --}}
 
-                    <table class="table table-hover container"> 
+                    <table class="table table-hover container">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Image</th>
-                                <th scope="col">Name</th>
+                                <th scope="col">User</th>
+                                <th scope="col">Course</th>
+                                <th scope="col">Video</th>
+                                <th scope="col">Message</th>
                                 <th scope="col">Handle</th>
                             </tr>
                         </thead>
@@ -33,16 +35,23 @@
                                         <p>{{ ++$count }}</p>
                                     </th>
                                     <td>
-                                        <h5 class="card-title">{{ $reportVideo->user->phone  }}</h5>
-                                    </td>
-                                    {{-- <td>
-                                        <h5 class="card-title">{{ $reportVideo->l_name }}</h5>
+                                        <h5 class="card-title">{{ $reportVideo->user->name }}</h5>
                                     </td>
                                     <td>
-                                        <h5 class="card-title">{{ $reportVideo->gender }}</h5>
+                                        <h5 class="card-title">{{ $reportVideo->video->course->name }}</h5>
                                     </td>
                                     <td>
-                                        <h5 class="card-title">{{ $reportVideo->phone }}</h5> --}}
+                                        <h5 class="card-title">{{ $reportVideo->user->name }}</h5>
+                                    </td>
+                                    <td>
+                                        <h5 class="card-title">{{ $reportVideo->message }}</h5>
+                                    </td>
+                                    <td>
+                                        <div class="btn-group">
+
+                                            <a href="{{ route('video.show', $reportVideo->video->id) }}" class="btn btn-primary"
+                                                aria-current="page">Show Video</a>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach

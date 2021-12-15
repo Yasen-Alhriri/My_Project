@@ -24,6 +24,10 @@ use App\Http\Controllers\notification\NotificationReportVideoController;
 //
 use App\Http\Controllers\User\UserController;
 
+// Statistic
+use App\Http\Controllers\Statistic\StatisticControllers;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -122,6 +126,8 @@ Route::namespace('product')->group(function () {
 
         Route::get('/product', [ProductController::class, 'index'])->name('product.index');
         Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
+        Route::delete('/product/{id}', [ProductController::class, 'destroy'])->name('product.delete');
+
         // Soft Delete
         Route::delete('/soft-delete/{id}', [ProductController::class, 'softDelete'])->name('product.soft.delete');
         Route::get('/back-soft-delete/{id}', [ProductController::class, 'backFromSoftDelete'])->name('product.back.soft.delete');
@@ -169,5 +175,14 @@ Route::namespace('user')->group(function () {
         Route::post('/soft-delete/{id}', [UserController::class, 'softDelete'])->name('user.soft.delete');
         Route::post('/back-soft-delete/{id}', [UserController::class, 'backFromSoftDelete'])->name('user.back.soft.delete');
         Route::get('/soft-delete/show', [UserController::class, 'softDeleteShow'])->name('user.soft.delete.show');
+    });
+});
+
+// Statistic
+Route::namespace('statistic')->group(function () {
+
+    Route::prefix('statistic')->group(function () {
+
+        // Route::get('/get-user-count', [StatisticControllers::class , 'userCount'])->name('user.count');
     });
 });

@@ -22,6 +22,11 @@
 
     <!--  -->
     <div class="col-lg-7 mb-lg-0 mb-4" style="width: auto;">
+
+
+        {{-- Alert Messages --}}
+        @include('common.alert')
+
         <div class="card">
             <div class="card-body p-3">
                 <div class="row">
@@ -59,7 +64,7 @@
                                                 aria-current="page">Show</a>
                                             <a href="{{ route('product.back.soft.delete', $product->id) }}" class="btn btn-primary"
                                                 aria-current="page">Back</a>
-                                            <form action="{{route('course.soft.delete' , $product->id)}}" method="post">
+                                            <form action="{{route('product.delete' , $product->id)}}" method="post">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger">Delete</button>

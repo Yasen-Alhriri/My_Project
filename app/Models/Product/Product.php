@@ -4,6 +4,8 @@ namespace App\Models\Product;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User\User;
+use App\Models\Product\CategoryProduct;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
@@ -28,7 +30,7 @@ class Product extends Model
         'status',
         'deleted_at',
         'product_date',
-        'category ',
+        'category',
         'id_user'
     ];
 
@@ -37,9 +39,9 @@ class Product extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function category()
+    public function categoryProduct()
     {
-        return $this->belongsTo(CategoryProduct::class, 'Category');
+        return $this->belongsTo(CategoryProduct::class, 'category');
     }
 
     /**

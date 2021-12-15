@@ -74,7 +74,7 @@ class CourseController extends Controller
         }
 
         $course->save();
-        return redirect()->route('Course.index');
+        return redirect()->route('Course.index')->with('success', 'This course has been Stored.');
     }
 
     /**
@@ -132,7 +132,7 @@ class CourseController extends Controller
         }
 
         $course->update();
-        return redirect()->route('Course.index')->with('success', 'Course Update.');
+        return redirect()->route('Course.index')->with('success', 'This course has been Update.');
     }
 
     /**
@@ -145,7 +145,7 @@ class CourseController extends Controller
     {
         $course = Course::where('id', '=', $id)->first();
         $course->delete();
-        return redirect()->route('Course.index')->with('success', 'Deleted Cousre.');
+        return redirect()->route('Course.index')->with('success', 'This course has been deleted.');
     }
 
     // Get All Courses By Category Id
@@ -162,7 +162,7 @@ class CourseController extends Controller
         $course = Course::find($id);
         $course->deleted_at = 1;
         $course->update();
-        return redirect()->back();
+        return redirect()->back()->with('success', 'This course has been soft deleted.');
     }
 
     //
@@ -174,7 +174,7 @@ class CourseController extends Controller
         $course->deleted_at = 0;
         $course->save();
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'This course has been returned.');
     }
 
     /**
