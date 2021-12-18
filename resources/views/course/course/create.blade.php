@@ -7,6 +7,11 @@
 
     <div class="col-lg-7 mb-lg-0 mb-4 container" style="width: auto;">
 
+
+        {{-- Alert Messages --}}
+        @include('common.alert')
+
+
         <div class="card">
             <div class="card-body p-3">
                 <div class="row">
@@ -16,20 +21,28 @@
                         @csrf
 
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" name="course_name" required>
+                            <input type="text" class="form-control" name="course_name" >
                             <label for="floatingInput">Course Name</label>
+                            {{-- Error --}}
+                            @include('common.error', [$name='name'])
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" name="course_presenter" required>
+                            <input type="text" class="form-control" name="course_presenter" >
                             <label for="floatingInput">Course presenter</label>
+                            {{-- Error --}}
+                            @include('common.error', [$name='presenter'])
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" name="course_description" required>
+                            <input type="text" class="form-control" name="course_description" >
                             <label for="floatingInput">Course description</label>
+                            {{-- Error --}}
+                            @include('common.error', [$name='name'])
                         </div>
                         <div class="form-floating mb-3">
                             <input type="file" class="form-control" name="image">
                             <label for="floatingInput">Course image</label>
+                            {{-- Error --}}
+                            @include('common.error', [$name='image'])
                         </div>
                         <div class="form-floating mb-3">
                             <select class="form-select" aria-label="Disabled select example" name="category">
@@ -37,6 +50,8 @@
                                     <option value="{{ $category->id }}">{{ $category->name }}</option>
                                 @endforeach
                             </select>
+                            {{-- Error --}}
+                            @include('common.error', [$name='category'])
                         </div>
 
                         <button type="submit" class="btn btn-primary">Save course</button>

@@ -7,9 +7,9 @@
 
 
     <!--  -->
-    <div class="col-lg-7 mb-lg-0 mb-4" style="min-width: fit-content;">
+    <div class="col-lg-7 mb-lg-0 mb-4" style="min-width: -webkit-fill-available;">
 
-        <div class="card">
+        <div class="card" style="min-width: fit-content;">
             <div class="card-body p-3">
 
                 <a href="{{ route('user.index') }}" class="btn btn-secondary" aria-current="page">Back</a>
@@ -22,6 +22,7 @@
                                 <th scope="col">Name</th>
                                 <th scope="col">Image</th>
                                 <th scope="col">Gender</th>
+                                <th scope="col">Description</th>
                                 <th scope="col">Phone</th>
                                 <th scope="col">Handle</th>
                             </tr>
@@ -41,19 +42,28 @@
                                             alt="..." width="50px" height="50px">
                                     </td>
                                     <td>
-                                        <h5 class="card-title">{{ $user->gender }}</h5>
+                                        <p class="card-title">{{ $user->gender }}</p>
                                     </td>
                                     <td>
-                                        <h5 class="card-title">{{ $user->phone }}</h5>
+                                        <p class="card-title">{{ $user->description }}</p>
+                                    </td>
+                                    <td>
+                                        <p class="card-title">{{ $user->phone }}</p>
                                     </td>
                                     <td>
                                         {{--  --}}
                                         <div class="btn-group">
-
+                                                @if ($user->deleted_at === 0)
                                                 <form action="{{route('user.soft.delete' , $user->id)}}" method="post">
                                                     @csrf
                                                     <button type="submit" class="btn btn-danger">Soft Delete</button>
                                                 </form>
+                                                @else
+                                                <form action="{{route('user.back.soft.delete' , $user->id)}}" method="post">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-danger">Back Soft Delete</button>
+                                                </form>
+                                                @endif
 
                                         </div>
                                     </td>

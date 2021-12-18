@@ -80,7 +80,7 @@ Route::namespace('Course')->group(function () {
         Route::delete('/delete/{id}', [CourseController::class, 'destroy'])->name('course.delete');
 
         // Soft Delete
-        Route::post('/soft-delete/{id}', [CourseController::class, 'softDelete'])->name('course.soft.delete');
+        Route::delete('/soft-delete/{id}', [CourseController::class, 'softDelete'])->name('course.soft.delete');
         Route::get('/back-soft-delete/{id}', [CourseController::class, 'backFromSoftDelete'])->name('course.back.soft.delete');
         Route::get('/soft-delete/show', [CourseController::class, 'softDeleteShow'])->name('course.soft.delete.show');
 
@@ -98,7 +98,7 @@ Route::namespace('Course')->group(function () {
         Route::get('/show/{id}', [VideoController::class, 'show'])->name('video.show');
         Route::get('/edit/{id}', [VideoController::class, 'edit'])->name('video.edit');
         Route::put('/update/{id}', [VideoController::class, 'update'])->name('video.update');
-        Route::delete('/update/{id}', [VideoController::class, 'destroy'])->name('video.delete');
+        Route::delete('/delete/{id}', [VideoController::class, 'destroy'])->name('video.delete');
     });
 });
 
@@ -166,10 +166,10 @@ Route::namespace('notification')->group(function () {
 // User
 Route::namespace('user')->group(function () {
 
-    Route::get('/user', [UserController::class, 'index'])->name('user.index');
 
     Route::prefix('/user')->group(function () {
 
+        Route::get('/', [UserController::class, 'index'])->name('user.index');
         Route::get('/user-show/{id}', [UserController::class, 'show'])->name('user.show');
         // Soft Delete
         Route::post('/soft-delete/{id}', [UserController::class, 'softDelete'])->name('user.soft.delete');

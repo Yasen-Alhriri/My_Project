@@ -7,6 +7,11 @@
 
     <div class="col-lg-7 mb-lg-0 mb-4 container" style="width: auto;">
 
+
+        {{-- Alert Messages --}}
+        @include('common.alert')
+
+
         <div class="card">
             <div class="card-body p-3">
                 <div class="row">
@@ -18,14 +23,20 @@
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control" name="name" required>
                             <label for="floatingInput">Video Name</label>
+                            {{-- Error --}}
+                            @include('common.error', [$name='name'])
                         </div>
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control" name="url" required>
                             <label for="floatingInput">Video URL</label>
+                            {{-- Error --}}
+                            @include('common.error', [$name='url'])
                         </div>
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control" name="video_Order" required>
                             <label for="floatingInput">Video Order</label>
+                            {{-- Error --}}
+                            @include('common.error', [$name='video_Order'])
                         </div>
                         <div class="form-floating mb-3">
                             <select class="form-select" aria-label="Disabled select example" name="id_course">
@@ -33,6 +44,8 @@
                                     <option value="{{ $course->id }}">{{ $course->name }}</option>
                                 @endforeach
                             </select>
+                            {{-- Error --}}
+                            @include('common.error', [$name='id_course'])
                         </div>
 
                         <button type="submit" class="btn btn-primary">Save Video</button>

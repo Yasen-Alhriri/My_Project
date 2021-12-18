@@ -25,7 +25,7 @@ class NotificationUserController extends Controller
     public function userAcceptance($id)
     {
         $user = User::where('id', '=', $id)->first();
-        $user->deleted_at = 1;
+        $user->deleted_at = 0;
         $user->update();
         return redirect()->back();
     }
@@ -34,7 +34,7 @@ class NotificationUserController extends Controller
     public function userRefused($id)
     {
         $user = User::where('id', '=', $id)->first();
-        $user->deleted_at = 0;
+        $user->deleted_at = 1;
         $user->update();
         return redirect()->back();
     }

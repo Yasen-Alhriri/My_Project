@@ -18,7 +18,7 @@
 
         {{-- Alert Messages --}}
         @include('common.alert')
-        
+
         <div class="card">
             <div class="card-body p-3">
 
@@ -65,12 +65,18 @@
                                         {{--  --}}
                                         <div class="btn-group">
 
+                                            @if ($product->deleted_at === 0)
 
                                             <form action="{{route('product.soft.delete' , $product->id)}}" method="post">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger">Soft Delete</button>
                                             </form>
+
+                                            @else
+                                            <a href="{{ route('product.back.soft.delete', $product->id) }}" class="btn btn-primary"
+                                                aria-current="page">Back</a>
+                                            @endif
 
                                         </div>
                                     </td>

@@ -8,16 +8,21 @@
 
 
 
-    <form action="{{ route('categoryProduct.update', $category->id) }}" method="post" enctype="multipart/form-data" class="container mt-5">
+    <form action="{{ route('categoryProduct.update', $category->id) }}" method="post" enctype="multipart/form-data"
+        class="container mt-5">
         @csrf
         @method('PUT')
         <div class="form-floating mb-3">
-            <input type="text" class="form-control" name="name" value="{{$category->name}}" required>
+            <input type="text" class="form-control" name="name" value="{{ $category->name }}" required>
             <label for="floatingInput">Category Name</label>
+            {{-- Error --}}
+            @include('common.error', [$name='name'])
         </div>
         <div class="form-floating mb-3">
             <input type="file" class="form-control" name="image">
             <label for="floatingInput">Category image</label>
+            {{-- Error --}}
+            @include('common.error', [$name='image'])
         </div>
 
         <button type="submit" class="btn btn-primary">Update Category</button>

@@ -48,7 +48,7 @@ class CourseController extends Controller
     public function store(Request $request)
     {
         // $request->validate([
-        //     'name'=>'required',
+        //     'name'=>['required'],
         //     'presenter'=>'required',
         //     'description'=>'required',
         //     'image'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',

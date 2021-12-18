@@ -52,14 +52,14 @@
                                             {{-- <a href="{{ route('categoryCourse.show', $category->id) }}"
                                                 class="btn btn-primary" aria-current="page">Show</a> --}}
                                             <a href="{{ route('categoryCourse.edit', $category->id) }}"
-                                                class="btn btn-warning">Edit</a>
+                                                class="btn btn-success">Edit</a>
                                             <form action="{{ route('categoryCourse.delete', $category->id) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger">Delete</button>
                                             </form>
                                             <a href="{{ route('categoryCourse.get.courses.by.category', $category->id) }}"
-                                                class="btn btn-success">Show Courses</a>
+                                                class="btn btn-primary">Show Courses</a>
                                         </div>
                                     </td>
                                 </tr>

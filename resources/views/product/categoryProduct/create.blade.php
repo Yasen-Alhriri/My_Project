@@ -14,10 +14,14 @@
         <div class="form-floating mb-3">
             <input type="text" class="form-control" name="name" required>
             <label for="floatingInput">Category Name</label>
+            {{-- Error --}}
+            @include('common.error', [$name='name'])
         </div>
         <div class="form-floating mb-3">
-            <input type="file" class="form-control" name="image" >
+            <input type="file" class="form-control" name="image">
             <label for="floatingInput">Category image</label>
+            {{-- Error --}}
+            @include('common.error', [$name='image'])
         </div>
 
         <button type="submit" class="btn btn-primary">Save Category</button>

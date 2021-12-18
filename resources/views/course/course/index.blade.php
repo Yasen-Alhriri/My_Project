@@ -21,6 +21,7 @@
                 {{-- Soft Delete --}}
                 <div>
                     <a href="{{ route('course.create') }}" class="btn btn-primary">Add Course</a>
+                    <a href="{{ route('course.soft.delete.show') }}" class="btn btn-info">Soft Delete</a>
 
                 </div>
                 {{--  --}}
@@ -51,17 +52,17 @@
                                 </td>
                                 <td>
                                     {{--  --}}
-                                    <div class="btn-group">
+                                    <div class="btn-group gap-1">
 
                                         <a href="{{ route('course.show', $course->id) }}" class="btn btn-primary"
                                             aria-current="page">Show</a>
                                         <a href="{{ route('course.edit', $course->id) }}" class="btn btn-success">Edit</a>
                                         <a href="{{ route('course.get.video.by.course', $course->id) }}"
                                             class="btn btn-info">Show Videos</a>
-                                        <form action="{{ route('course.delete', $course->id) }}" method="post">
+                                        <form action="{{ route('course.soft.delete', $course->id) }}" method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                            <button type="submit" class="btn btn-danger">soft Delete</button>
                                         </form>
 
                                     </div>

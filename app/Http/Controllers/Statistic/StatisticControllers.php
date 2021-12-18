@@ -12,18 +12,12 @@ class StatisticControllers extends Controller
 {
     //
     public function userCount(){
-        $userCount = User::count();
+
+        $userCount = User::where('deleted_at', '=', '0')->count();
+        $productCount= Product::where('deleted_at', '=', '0')->count();
         // dd($userCount);
-        return view('layouts.layout', compact('userCount'));
+        return view('layouts.layout', compact('userCount','productCount'));
     }
 
-    //
-    public function product(){
 
-    }
-
-    //
-    public function video(){
-
-    }
 }

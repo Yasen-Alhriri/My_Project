@@ -23,8 +23,9 @@
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Image</th>
                                 <th scope="col">Name</th>
+                                <th scope="col">Image</th>
+                                <th scope="col">Gender</th>
                                 <th scope="col">Handle</th>
                             </tr>
                         </thead>
@@ -37,16 +38,14 @@
                                         <p>{{ ++$count }}</p>
                                     </th>
                                     <td>
-                                        <h5 class="card-title">{{ $user->f_name }}</h5>
+                                        <h6 class="card-title">{{ $user->f_name .' '. $user->l_name }}</h6>
                                     </td>
                                     <td>
-                                        <h5 class="card-title">{{ $user->l_name }}</h5>
+                                        <img src="{{ asset('image/user/' . $user->image) }}" class="rounded"
+                                        alt="..." width="70px" height="70px">
                                     </td>
                                     <td>
                                         <h5 class="card-title">{{ $user->gender }}</h5>
-                                    </td>
-                                    <td>
-                                        <h5 class="card-title">{{ $user->phone }}</h5>
                                     </td>
                                     <td>
                                         {{--  --}}
@@ -54,7 +53,7 @@
                                             <a href="{{ route('user.acceptance.notification', $user->id) }}"
                                                 class="btn btn-primary" aria-current="page">Acceptance</a>
                                             <a href="{{ route('user.refused.notification', $user->id) }}"
-                                                class="btn btn-success">Refused</a>
+                                                class="btn btn-danger">Refused</a>
 
                                         </div>
                                     </td>

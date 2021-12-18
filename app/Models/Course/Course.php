@@ -25,6 +25,7 @@ class Course extends Model
         'presenter',
         'description',
         'image',
+        'deleted_at',
         'category'
     ];
 

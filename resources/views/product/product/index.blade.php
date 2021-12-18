@@ -18,13 +18,13 @@
 
         {{-- Alert Messages --}}
         @include('common.alert')
-        
+
         <div class="card">
             <div class="card-body p-3">
 
                     {{-- Soft Delete --}}
                     <div>
-                        <a href="{{ route('product.soft.delete.show') }}" class="btn btn-primary"
+                        <a href="{{ route('product.soft.delete.show') }}" class="btn btn-info"
                             aria-current="page">Soft Delete</a>
                     </div>
                         {{--  --}}

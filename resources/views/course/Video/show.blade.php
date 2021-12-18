@@ -13,6 +13,11 @@
     <!--  -->
     <div class="col-lg-7 mb-lg-0 mb-4" style="min-width: fit-content;">
 
+
+        {{-- Alert Messages --}}
+        @include('common.alert')
+
+
         <div class="card">
             <div class="card-body p-3">
 
@@ -25,6 +30,7 @@
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Name</th>
+                                <th scope="col">Video</th>
                                 <th scope="col">video Order</th>
                                 <th scope="col">Course</th>
                                 <th scope="col">Handle</th>
@@ -37,13 +43,20 @@
                                 <th scope="row">
                                 </th>
                                 <td>
-                                    <h5 class="card-title">{{ $video->name }}</h5>
+                                    <h6 class="card-title">{{ $video->name }}</h6>
                                 </td>
                                 <td>
-                                    <h5 class="card-title">{{ $video->video_Order }}</h5>
+                                    <iframe width="70" height="70"
+                                    src="https://www.youtube-nocookie.com/embed/{{$video->url}}" title="YouTube video player"
+                                    frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen></iframe>
                                 </td>
                                 <td>
-                                    <h5 class="card-title">{{ $video->course->name }}</h5>
+                                    <h6 class="card-title">{{ $video->video_Order }}</h6>
+                                </td>
+                                <td>
+                                    <h6 class="card-title">{{ $video->course->name }}</h6>
                                 </td>
                                 <td>
                                     {{--  --}}
