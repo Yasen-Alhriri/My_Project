@@ -21,19 +21,19 @@
                         @csrf
 
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" name="course_name" >
+                            <input type="text" class="form-control" name="course_name">
                             <label for="floatingInput">Course Name</label>
                             {{-- Error --}}
                             @include('common.error', [$name='name'])
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" name="course_presenter" >
+                            <input type="text" class="form-control" name="course_presenter">
                             <label for="floatingInput">Course presenter</label>
                             {{-- Error --}}
                             @include('common.error', [$name='presenter'])
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" name="course_description" >
+                            <input type="text" class="form-control" name="course_description">
                             <label for="floatingInput">Course description</label>
                             {{-- Error --}}
                             @include('common.error', [$name='name'])

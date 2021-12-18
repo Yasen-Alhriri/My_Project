@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 
-@section('title','Soft Delete Product')
+@section('title', 'Soft Delete Product')
 @section('PageName', 'Soft Delete Product')
 
 @section('content')
@@ -44,7 +44,7 @@
 
 
                         <tbody>
-                                @foreach ($products as $product)
+                            @foreach ($products as $product)
                                 <tr>
                                     <th scope="row">
                                         <p>{{ ++$count }}</p>
@@ -62,9 +62,9 @@
 
                                             <a href="{{ route('product.show', $product->id) }}" class="btn btn-primary"
                                                 aria-current="page">Show</a>
-                                            <a href="{{ route('product.back.soft.delete', $product->id) }}" class="btn btn-primary"
-                                                aria-current="page">Back</a>
-                                            <form action="{{route('product.delete' , $product->id)}}" method="post">
+                                            <a href="{{ route('product.back.soft.delete', $product->id) }}"
+                                                class="btn btn-primary" aria-current="page">Back</a>
+                                            <form action="{{ route('product.delete', $product->id) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger">Delete</button>
@@ -72,8 +72,8 @@
                                         </div>
                                     </td>
                                 </tr>
-                                @endforeach
-                            </tbody>
+                            @endforeach
+                        </tbody>
                     </table>
 
 

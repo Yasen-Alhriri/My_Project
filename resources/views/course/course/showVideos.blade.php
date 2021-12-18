@@ -17,57 +17,56 @@
                 <a href="{{ route('video.create') }}" class="btn btn-primary">Add video to Course</a>
 
 
-                    <table class="table table-hover container">
-                        <thead>
+                <table class="table table-hover container">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">video Order</th>
+                            <th scope="col">Handle</th>
+                        </tr>
+                    </thead>
+
+
+                    <tbody>
+                        @foreach ($videos as $video)
                             <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">video Order</th>
-                                <th scope="col">Handle</th>
+                                <th scope="row">
+                                    <p>{{ ++$count }}</p>
+                                </th>
+                                <td>
+                                    <h5 class="card-title">{{ $video->name }}</h5>
+                                </td>
+                                <td>
+                                    <h5 class="card-title">{{ $video->video_Order }}</h5>
+                                </td>
+                                <td>
+                                    {{--  --}}
+                                    <div class="btn-group">
+
+                                        <a href="{{ route('video.show', $video->id) }}" class="btn btn-primary"
+                                            aria-current="page">Show</a>
+                                        <a href="{{ route('video.edit', $video->id) }}" class="btn btn-success">Edit</a>
+                                        <form action="{{ route('course.soft.delete', $video->id) }}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                        </form>
+                                    </div>
+                                </td>
                             </tr>
-                        </thead>
-
-
-                        <tbody>
-                                @foreach ($videos as $video)
-                                <tr>
-                                    <th scope="row">
-                                        <p>{{ ++$count }}</p>
-                                    </th>
-                                    <td>
-                                        <h5 class="card-title">{{ $video->name }}</h5>
-                                    </td>
-                                    <td>
-                                        <h5 class="card-title">{{ $video->video_Order }}</h5>
-                                    </td>
-                                    <td>
-                                        {{--  --}}
-                                        <div class="btn-group">
-
-                                            <a href="{{ route('video.show', $video->id) }}" class="btn btn-primary"
-                                                aria-current="page">Show</a>
-                                            <a href="{{ route('video.edit', $video->id) }}"
-                                                class="btn btn-success">Edit</a>
-                                            <form action="{{route('course.soft.delete' , $video->id)}}" method="post">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger">Delete</button>
-                                            </form>
-                                        </div>
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                    </table>
+                        @endforeach
+                    </tbody>
+                </table>
 
 
 
 
-                </div>
             </div>
         </div>
+    </div>
 
 
 
-        {{-- {{ $videos->links() }} --}}
-    @endsection
+    {{-- {{ $videos->links() }} --}}
+@endsection

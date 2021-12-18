@@ -8,11 +8,12 @@
 
 
 
-    <form action="{{ route('categoryCourse.update', $category->id) }}" method="post" enctype="multipart/form-data" class="container mt-5">
+    <form action="{{ route('categoryCourse.update', $category->id) }}" method="post" enctype="multipart/form-data"
+        class="container mt-5">
         @csrf
         @method('PUT')
         <div class="form-floating mb-3">
-            <input type="text" class="form-control" name="name" value="{{$category->name}}" required>
+            <input type="text" class="form-control" name="name" value="{{ $category->name }}" required>
             <label for="floatingInput">Category Name</label>
             {{-- Error --}}
             @include('common.error', [$name='name'])

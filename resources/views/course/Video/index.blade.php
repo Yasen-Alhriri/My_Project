@@ -23,69 +23,69 @@
 
 
 
-                    <table class="table table-hover container">
-                        <thead>
+                <table class="table table-hover container">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Video</th>
+                            <th scope="col">video Order</th>
+                            <th scope="col">Course</th>
+                            <th scope="col">Handle</th>
+                        </tr>
+                    </thead>
+
+
+                    <tbody>
+                        @foreach ($videos as $video)
                             <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Video</th>
-                                <th scope="col">video Order</th>
-                                <th scope="col">Course</th>
-                                <th scope="col">Handle</th>
-                            </tr>
-                        </thead>
+                                <th scope="row">
+                                    <p>{{ ++$count }}</p>
+                                </th>
+                                <td>
+                                    <h5 class="card-title">{{ $video->name }}</h5>
+                                </td>
+                                <td>
 
-
-                        <tbody>
-                            @foreach ($videos as $video)
-                                <tr>
-                                    <th scope="row">
-                                        <p>{{ ++$count }}</p>
-                                    </th>
-                                    <td>
-                                        <h5 class="card-title">{{ $video->name }}</h5>
-                                    </td>
-                                    <td>
-                                        <iframe width="70" height="70"
-                                        src="https://www.youtube-nocookie.com/embed/{{$video->url}}" title="YouTube video player"
-                                        frameborder="0"
+                                    <iframe width="70" height="70"
+                                        src="https://www.youtube-nocookie.com/embed/{{ $video->url }}"
+                                        title="YouTube video player" frameborder="0"
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                         allowfullscreen></iframe>
-                                    </td>
-                                    <td>
-                                        <h5 class="card-title">{{ $video->video_Order }}</h5>
-                                    </td>
-                                    <td>
-                                        <h5 class="card-title">{{ $video->course->name }}</h5>
-                                    </td>
-                                    <td>
-                                        {{--  --}}
-                                        <div class="btn-group gap-1">
+                                </td>
+                                <td>
+                                    <h5 class="card-title">{{ $video->video_Order }}</h5>
+                                </td>
+                                <td>
+                                    <h5 class="card-title">{{ $video->course->name }}</h5>
+                                </td>
+                                <td>
+                                    {{--  --}}
+                                    <div class="btn-group gap-1">
 
-                                            <a href="{{ route('video.show', $video->id) }}" class="btn btn-primary"
-                                                aria-current="page">Show</a>
-                                            <a href="{{ route('video.edit', $video->id) }}"
-                                                class="btn btn-success">Edit</a>
-                                            <form action="{{ route('video.delete', $video->id) }}" method="post">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger">Delete</button>
-                                            </form>
-                                        </div>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-
+                                        <a href="{{ route('video.show', $video->id) }}" class="btn btn-primary"
+                                            aria-current="page">Show</a>
+                                        <a href="{{ route('video.edit', $video->id) }}" class="btn btn-success">Edit</a>
+                                        <form action="{{ route('video.delete', $video->id) }}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
 
 
 
-                </div>
+
             </div>
         </div>
+    </div>
 
 
 
-        {{ $videos->links() }}
-    @endsection
+    {{ $videos->links() }}
+@endsection
