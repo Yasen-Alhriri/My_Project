@@ -15,12 +15,12 @@ class CategoryProductController extends Controller
      */
     public function index()
     {
-        $categories = CategoryProduct::latest(
+        $categories = CategoryProduct::where('deleted_at', '=', '0')->latest(
             'name',
-            'image')->paginate(4);
-            $count=0;
-        return view('product.categoryProduct.index', compact('categories','count'))->with('i', (request()->input('page', 1) - 1) * 5);
-
+            'image'
+        )->paginate(4);
+        $count = 0;
+        return view('product.categoryProduct.index', compact('categories', 'count'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -46,23 +46,22 @@ class CategoryProductController extends Controller
         //     'image'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         // ]);
 
-            $category = new CategoryProduct;
-            $category->name = $request->input('name');
+        $category = new CategoryProduct;
+        $category->name = $request->input('name');
 
 
-            if ($request->hasFile('image')) {
+        if ($request->hasFile('image')) {
 
 
-                $file = $request->file('image');
-                $extention = $file->getClientOriginalExtension();
-                $filename = time().'.'.$extention ;
-                $file->move('image/category/' , $filename);
-                $category->image = $filename;
+            $file = $request->file('image');
+            $extention = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $extention;
+            $file->move('image/category/', $filename);
+            $category->image = $filename;
+        }
 
-            }
-
-            $category->save();
-            return redirect()->route('categoryProduct.index');
+        $category->save();
+        return redirect()->route('categoryProduct.index');
     }
 
     /**
@@ -73,7 +72,7 @@ class CategoryProductController extends Controller
      */
     public function show($id)
     {
-        $category = CategoryProduct::where('id','=',$id)->first();
+        $category = CategoryProduct::where('id', '=', $id)->first();
         return view('product.categoryProduct.show', compact('category'));
     }
 
@@ -85,9 +84,8 @@ class CategoryProductController extends Controller
      */
     public function edit($id)
     {
-        $category = CategoryProduct::where('id','=',$id)->first();
+        $category = CategoryProduct::where('id', '=', $id)->first();
         return view('product.categoryProduct.edit', compact('category'));
-
     }
 
     /**
@@ -99,7 +97,7 @@ class CategoryProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $category = CategoryProduct::where('id','=',$id)->first();
+        $category = CategoryProduct::where('id', '=', $id)->first();
         $category->name = $request->input('name');
 
 
@@ -108,10 +106,9 @@ class CategoryProductController extends Controller
 
             $file = $request->file('image');
             $extention = $file->getClientOriginalExtension();
-            $filename = time().'.'.$extention ;
-            $file->move('image/category/' , $filename);
+            $filename = time() . '.' . $extention;
+            $file->move('image/category/', $filename);
             $category->image = $filename;
-
         }
 
         $category->update();
@@ -128,7 +125,38 @@ class CategoryProductController extends Controller
     {
         $categoryProduct = CategoryProduct::where('id', '=', $id)->first();
         $categoryProduct->delete();
-        return redirect()->back()->with('success','Category Product Deleted.');
+        return redirect()->back()->with('success', 'Category Product Deleted.');
     }
 
+    // Soft Delete
+    public function softDelete($id)
+    {
+        $category = CategoryProduct::find($id);
+        $category->deleted_at = 1;
+        $category->update();
+        return redirect()->back()->with('success', 'This category product has been soft deleted.');
+    }
+
+    // Back Soft Deleted
+    public function backFromSoftDelete($id)
+    {
+
+        $category = CategoryProduct::where('id', '=', $id)->first();
+        $category->deleted_at = 0;
+        $category->update();
+
+        //  dd($product);
+
+        return redirect()->back()->with('success', 'This category product has been returned.');
+    }
+
+    // Show Soft Deleted
+    public function softDeleteShow()
+    {
+        $categories = CategoryProduct::where('deleted_at', '=', '1')->latest(
+            'name'
+        )->paginate(4);
+        $count = 0;
+        return view('product.categoryProduct.softDelete', compact('categories', 'count'))->with('i', (request()->input('page', 1) - 1) * 5);
+    }
 }

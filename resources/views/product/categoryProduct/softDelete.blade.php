@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('title', 'Category Product')
-@section('PageName', 'Category Product')
+@section('PageName', 'Soft Deleted Category Product')
 
 @section('content')
 
@@ -17,11 +17,7 @@
         <div class="card" style="min-width: fit-content;">
             <div class="card-body p-3">
 
-                {{-- Soft Delete --}}
-                <div>
-                    <a href="{{ route('categoryProduct.create') }}" class="btn btn-primary">Add Category Product</a>
-                    <a href="{{ route('categoryProduct.soft.delete.show') }}" class="btn btn-info" aria-current="page">Soft Delete</a>
-                </div>
+                <a href="{{ route('categoryProduct.index') }}" class="btn btn-secondary" aria-current="page">Back</a>
 
                 {{--  --}}
 
@@ -59,11 +55,13 @@
                                             class="btn btn-success">Edit</a>
                                         <a href="{{ route('categoryProduct.get.product.by.category', $category->id) }}"
                                             class="btn btn-primary">Show Product</a>
-                                        <form action="{{ route('categoryProduct.soft.delete', $category->id) }}" method="post">
+                                            <a href="{{ route('categoryProduct.back.soft.delete', $category->id) }}"
+                                                class="btn btn-success">Back</a>
+                                        {{-- <form action="{{ route('categoryProduct.delete', $category->id) }}" method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">Soft Delete</button>
-                                        </form>
+                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                        </form> --}}
                                     </div>
                                 </td>
                             </tr>

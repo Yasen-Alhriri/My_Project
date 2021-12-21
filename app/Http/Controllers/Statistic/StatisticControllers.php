@@ -16,7 +16,7 @@ class StatisticControllers extends Controller
         $userCount = User::where('deleted_at', '=', '0')->count();
         $productCount= Product::where('deleted_at', '=', '0')->count();
         // dd($userCount);
-        return view('layouts.layout', compact('userCount','productCount'));
+        return view('dashboard', compact('userCount','productCount'));
     }
 
 

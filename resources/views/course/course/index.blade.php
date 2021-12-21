@@ -1,5 +1,6 @@
 @extends('layouts.layout')
 
+@section('title', 'Course')
 @section('PageName', 'Course')
 
 @section('content')
@@ -10,12 +11,12 @@
     <!--  -->
 
 
-    <div class="col-lg-7 mb-lg-0 mb-4" style="min-width: fit-content;">
+    <div class="col-lg-7 mb-lg-0 mb-4" style="min-width: -webkit-fill-available;">
 
         {{-- Alert Messages --}}
         @include('common.alert')
 
-        <div class="card">
+        <div class="card" style="min-width: fit-content;">
             <div class="card-body p-3">
 
                 {{-- Soft Delete --}}
@@ -32,7 +33,10 @@
                             <th scope="col">#</th>
                             <th scope="col">Image</th>
                             <th scope="col">Name</th>
-                            <th scope="col">Handle</th>
+                            <th scope="col">Presenter</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
 
@@ -44,18 +48,27 @@
                                     <p>{{ ++$count }}</p>
                                 </th>
                                 <td>
-                                    <img src="{{ asset('image/course/' . $course->image) }}" class="rounded "
-                                        alt="..." width="70px" height="70px">
+                                    <img src="{{ asset('image/course/' . $course->image) }}" class="rounded " alt="..."
+                                        width="70px" height="70px">
+
                                 </td>
                                 <td>
-                                    <h5 class="card-title">{{ $course->name }}</h5>
+                                    <p class="card-title">{{ $course->name }}</p>
                                 </td>
                                 <td>
-                                    {{--  --}}
+                                    <p class="card-title">{{ $course->presenter }}</p>
+                                </td>
+                                <td>
+                                    <p class="card-text">{{ $course->description }}</p>
+                                </td>
+                                <td>
+                                    <p class="card-text">{{ $course->categoryCourse->name }}</p>
+                                </td>
+                                <td>
                                     <div class="btn-group gap-1">
 
-                                        <a href="{{ route('course.show', $course->id) }}" class="btn btn-primary"
-                                            aria-current="page">Show</a>
+                                        {{-- <a href="{{ route('course.show', $course->id) }}" class="btn btn-primary"
+                                            aria-current="page">Show</a> --}}
                                         <a href="{{ route('course.edit', $course->id) }}" class="btn btn-success">Edit</a>
                                         <a href="{{ route('course.get.video.by.course', $course->id) }}"
                                             class="btn btn-info">Show Videos</a>

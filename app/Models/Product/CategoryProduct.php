@@ -14,7 +14,8 @@ class CategoryProduct extends Model
     public $timestamps = false;
     protected $fillable = [
         'name',
-        'image'
+        'image',
+        'deleted_at'
     ];
 
     /**

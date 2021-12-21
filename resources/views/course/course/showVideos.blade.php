@@ -8,9 +8,12 @@
 
 
     <!--  -->
-    <div class="col-lg-7 mb-lg-0 mb-4" style="min-width: fit-content;">
+    <div class="col-lg-7 mb-lg-0 mb-4" style="min-width: -webkit-fill-available;">
 
-        <div class="card">
+        {{-- Alert Messages --}}
+        @include('common.alert')
+
+        <div class="card" style="min-width: fit-content;">
             <div class="card-body p-3">
 
                 <a href="{{ route('Course.index') }}" class="btn btn-secondary" aria-current="page">Back</a>
@@ -22,8 +25,10 @@
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Name</th>
+                            <th scope="col">Video</th>
                             <th scope="col">video Order</th>
-                            <th scope="col">Handle</th>
+                            <th scope="col">Course</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
 
@@ -38,11 +43,22 @@
                                     <h5 class="card-title">{{ $video->name }}</h5>
                                 </td>
                                 <td>
+
+                                    <iframe width="70" height="70"
+                                        src="https://www.youtube-nocookie.com/embed/{{ $video->url }}"
+                                        title="YouTube video player" frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen></iframe>
+                                </td>
+                                <td>
                                     <h5 class="card-title">{{ $video->video_Order }}</h5>
                                 </td>
                                 <td>
+                                    <h5 class="card-title">{{ $video->course->name }}</h5>
+                                </td>
+                                <td>
                                     {{--  --}}
-                                    <div class="btn-group">
+                                    <div class="btn-group gap-1">
 
                                         <a href="{{ route('video.show', $video->id) }}" class="btn btn-primary"
                                             aria-current="page">Show</a>

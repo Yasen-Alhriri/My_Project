@@ -117,8 +117,13 @@ Route::namespace('product')->group(function () {
         Route::put('/update/{id}', [CategoryProductController::class, 'update'])->name('categoryProduct.update');
         Route::delete('/delete/{id}', [CategoryProductController::class, 'destroy'])->name('categoryProduct.delete');
 
-        //
+        // Get Product By Category Id
         Route::get('/id/{id}/get-product', [ProductController::class, 'getProductByCategoryId'])->name('categoryProduct.get.product.by.category');
+
+        //Soft Delete
+        Route::delete('/soft-delete/{id}', [CategoryProductController::class, 'softDelete'])->name('categoryProduct.soft.delete');
+        Route::get('/back-soft-delete/{id}', [CategoryProductController::class, 'backFromSoftDelete'])->name('categoryProduct.back.soft.delete');
+        Route::get('/soft-delete/show', [CategoryProductController::class, 'softDeleteShow'])->name('categoryProduct.soft.delete.show');
     });
 
     // Product
@@ -178,11 +183,11 @@ Route::namespace('user')->group(function () {
     });
 });
 
-// Statistic
-Route::namespace('statistic')->group(function () {
+// Dashboard
+Route::namespace('dashboard')->group(function () {
 
-    Route::prefix('statistic')->group(function () {
+    Route::prefix('dashboard')->group(function () {
 
-        // Route::get('/get-user-count', [StatisticControllers::class , 'userCount'])->name('user.count');
+        Route::get('/dashboard', [StatisticControllers::class , 'userCount'])->name('dashboard');
     });
 });

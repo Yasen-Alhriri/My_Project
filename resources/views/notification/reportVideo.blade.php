@@ -23,7 +23,7 @@
                             <th scope="col">Course</th>
                             <th scope="col">Video</th>
                             <th scope="col">Message</th>
-                            <th scope="col">Handle</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
 

@@ -35,7 +35,7 @@
                             <th scope="col">Name</th>
                             <th scope="col">Description</th>
                             <th scope="col">Category</th>
-                            <th scope="col">Handle</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
 

@@ -1,5 +1,6 @@
 @extends('layouts.layout')
 
+@section('title', 'Notification')
 @section('PageName', 'Notification')
 
 @section('content')

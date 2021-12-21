@@ -26,7 +26,7 @@
                             <th scope="col">Name</th>
                             <th scope="col">Image</th>
                             <th scope="col">Gender</th>
-                            <th scope="col">Handle</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
 

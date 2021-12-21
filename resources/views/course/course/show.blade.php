@@ -10,8 +10,6 @@
     <!--  -->
 
 
-<a href="{{ url()->previous() }}">reerer</a>
-
 
     <!--  -->
     <div class="col-lg-7 mb-lg-0 mb-4" style="min-width: -webkit-fill-available;">
@@ -22,7 +20,7 @@
         <div class="card" style="min-width: fit-content;">
             <div class="card-body p-3">
 
-                <a href="{{ route('Course.index') }}" class="btn btn-secondary" aria-current="page">Back</a>
+                <a href="{{ url()->previous() }}" class="btn btn-secondary" aria-current="page">Back</a>
 
 
 
@@ -35,7 +33,7 @@
                             <th scope="col">Presenter</th>
                             <th scope="col">Description</th>
                             <th scope="col">Category</th>
-                            <th scope="col">Handle</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
 

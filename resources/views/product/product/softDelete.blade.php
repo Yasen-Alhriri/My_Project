@@ -36,9 +36,12 @@
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
+                                <th scope="col">User</th>
                                 <th scope="col">Image</th>
                                 <th scope="col">Name</th>
-                                <th scope="col">Handle</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Category</th>
+                                <th scope="col">Action</th>
                             </tr>
                         </thead>
 
@@ -50,11 +53,20 @@
                                         <p>{{ ++$count }}</p>
                                     </th>
                                     <td>
-                                        <img src="{{ asset('image/product/' . $product->image) }}" class="card-img-top"
-                                            alt="..." width="50px" height="50px">
+                                        <h5 class="card-title">{{ $product->user->f_name . ' ' . $product->user->l_name }}</h5>
+                                    </td>
+                                    <td>
+                                        <img src="{{ asset('image/product/' . $product->image) }}" class="card-img-top" alt="..."
+                                            width="50px" height="50px">
                                     </td>
                                     <td>
                                         <h5 class="card-title">{{ $product->name }}</h5>
+                                    </td>
+                                    <td>
+                                        <h5 class="card-title">{{ $product->description }}</h5>
+                                    </td>
+                                    <td>
+                                        <h5 class="card-title">{{ $product->categoryProduct->name }}</h5>
                                     </td>
                                     <td>
                                         {{--  --}}
