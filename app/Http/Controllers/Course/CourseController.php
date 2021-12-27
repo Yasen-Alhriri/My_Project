@@ -22,7 +22,7 @@ class CourseController extends Controller
             'description',
             'image',
             'category'
-        )->paginate(4);
+        )->paginate(5);
         $count = 0;
         return view('course.course.index', compact('courses', 'count'))->with('i', (request()->input('page', 1) - 1) * 5);
     }

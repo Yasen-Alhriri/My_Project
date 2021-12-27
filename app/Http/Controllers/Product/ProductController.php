@@ -24,7 +24,7 @@ class ProductController extends Controller
             'size',
             'unit',
             'count_visits',
-        )->paginate(4);
+        )->paginate(5);
         $count = 0;
         return view('product.product.index', compact('products', 'count'))->with('i', (request()->input('page', 1) - 1) * 5);
     }

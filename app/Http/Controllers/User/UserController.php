@@ -16,7 +16,7 @@ class UserController extends Controller
             'l_name',
             'gender',
             'phone'
-        )->paginate(4);
+        )->paginate(5);
         $count = 0;
         return view('users.index', compact('users', 'count'))->with('i', (request()->input('page', 1) - 1) * 5);
     }

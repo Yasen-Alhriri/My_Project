@@ -21,7 +21,7 @@ class VideoController extends Controller
             'url',
             'name',
             'video_Order'
-        )->paginate(4);
+        )->paginate(5);
 
         $count =0 ;
         return view('course.Video.index', compact('videos' , 'count'));

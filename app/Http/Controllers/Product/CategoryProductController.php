@@ -18,7 +18,7 @@ class CategoryProductController extends Controller
         $categories = CategoryProduct::where('deleted_at', '=', '0')->latest(
             'name',
             'image'
-        )->paginate(4);
+        )->paginate(5);
         $count = 0;
         return view('product.categoryProduct.index', compact('categories', 'count'))->with('i', (request()->input('page', 1) - 1) * 5);
     }

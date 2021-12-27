@@ -18,7 +18,7 @@ class CategoryCourseController extends Controller
         $categories = CategoryCourse::latest(
             'name',
             'image'
-        )->paginate(4);
+        )->paginate(5);
         $count = 0;
         return view('course.categoryCourse.index', compact('categories', 'count'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
