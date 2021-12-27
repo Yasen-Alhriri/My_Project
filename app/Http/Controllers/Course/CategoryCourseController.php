@@ -41,10 +41,10 @@ class CategoryCourseController extends Controller
      */
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'name	' => 'required',
-        //     'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
-        // ]);
+        $request->validate([
+            'name' => 'required|max:50',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        ]);
 
         $category = new CategoryCourse;
         $category->name = $request->input('name');
@@ -84,6 +84,7 @@ class CategoryCourseController extends Controller
      */
     public function edit($id)
     {
+
         $category = CategoryCourse::where('id', '=', $id)->first();
         return view('course.categoryCourse.edit', compact('category'));
     }
@@ -97,6 +98,10 @@ class CategoryCourseController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'name' => 'required|max:50',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        ]);
         $category = CategoryCourse::where('id', '=', $id)->first();
         $category->name = $request->input('name');
 

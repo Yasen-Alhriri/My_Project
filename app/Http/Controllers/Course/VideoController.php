@@ -46,12 +46,12 @@ class VideoController extends Controller
      */
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'id_course'=>'required',
-        //     'url'=>'required',
-        //     'name'=>'required',
-        //     'video_Order'=>'required',
-        // ]);
+        $request->validate([
+            'id_course'=>'required',
+            'url'=>'required|url|max:1000',
+            'name'=>'required|max:100',
+            'video_Order'=>'required',
+        ]);
 
         //
         $url = $request->input('url');
@@ -104,12 +104,12 @@ class VideoController extends Controller
     {
         $video = Video::where('id','=',$id)->first();
 
-        // $request->validate([
-        //     'id_course'=>'required',
-        //     'url'=>'required',
-        //     'name'=>'required',
-        //     'video_Order'=>'required',
-        // ]);
+        $request->validate([
+            'id_course'=>'required',
+            'url'=>'required|url|max:1000',
+            'name'=>'required|max:100',
+            'video_Order'=>'required',
+        ]);
 
         $video->id_course = $request->input('id_course');
         $video->url = $request->input('url');

@@ -21,34 +21,34 @@
                     @csrf
                     @method('PUT')
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" name="course_name" placeholder="Course"
-                            value="{{ $course->name }}" required>
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" placeholder="Course"
+                            value="{{ $course->name }}" >
                         <label for="floatingInput">Course Name</label>
                         {{-- Error --}}
                         @include('common.error', [$name='name'])
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingInput" name="course_presenter"
-                            placeholder="Course" value="{{ $course->presenter }}" required>
+                        <input type="text" class="form-control @error('presenter') is-invalid @enderror" id="floatingInput" name="presenter"
+                            placeholder="Course" value="{{ $course->presenter }}" >
                         <label for="floatingInput">Course presenter</label>
                         {{-- Error --}}
                         @include('common.error', [$name='presenter'])
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingInput" name="course_description"
-                            placeholder="Course" value="{{ $course->description }}" required>
+                        <input type="text" class="form-control @error('description') is-invalid @enderror" id="floatingInput" name="description"
+                            placeholder="Course" value="{{ $course->description }}" >
                         <label for="floatingInput">Course description</label>
                         {{-- Error --}}
                         @include('common.error', [$name='description'])
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="file" class="form-control" id="floatingInput" name="image" placeholder="Course">
+                        <input type="file" class="form-control @error('image') is-invalid @enderror" id="floatingInput" name="image" placeholder="Course">
                         <label for="floatingInput">Course image</label>
                         {{-- Error --}}
                         @include('common.error', [$name='image'])
                     </div>
                     <div class="form-floating mb-3">
-                        <select class="form-select" aria-label="Disabled select example" name="category">
+                        <select class="form-select @error('category') is-invalid @enderror" aria-label="Disabled select example" name="category">
                             <option value="{{ $course->categoryCourse->id }}">{{ $course->categoryCourse->name }}
                             </option>
                             @foreach ($categories as $category)

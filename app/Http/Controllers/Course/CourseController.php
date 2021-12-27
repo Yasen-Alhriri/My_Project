@@ -47,18 +47,18 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'name'=>['required'],
-        //     'presenter'=>'required',
-        //     'description'=>'required',
-        //     'image'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        //     'category'=>'required'
-        // ]);
+        $request->validate([
+            'name'=>'required|max:50',
+            'presenter'=>'required|max:50',
+            'description'=>'nullable|max:1000',
+            'image'=>'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'category'=>'required'
+        ]);
 
         $course = new Course;
-        $course->name = $request->input('course_name');
-        $course->presenter = $request->input('course_presenter');
-        $course->description = $request->input('course_description');
+        $course->name = $request->input('name');
+        $course->presenter = $request->input('presenter');
+        $course->description = $request->input('description');
         $course->category = $request->input('category');
         $course->deleted_at = 0;
 
@@ -115,10 +115,17 @@ class CourseController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'name'=>'required|max:50',
+            'presenter'=>'required|max:50',
+            'description'=>'nullable|max:1000',
+            'image'=>'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'category'=>'required'
+        ]);
         $course = Course::where('id', '=', $id)->first();
-        $course->name = $request->input('course_name');
-        $course->presenter = $request->input('course_presenter');
-        $course->description = $request->input('course_description');
+        $course->name = $request->input('name');
+        $course->presenter = $request->input('presenter');
+        $course->description = $request->input('description');
         $course->category = $request->input('category');
 
         if ($request->hasFile('image')) {
