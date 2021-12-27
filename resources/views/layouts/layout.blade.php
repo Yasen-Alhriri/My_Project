@@ -1,43 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        {{-- لحتى الصفحات يزبطوا بكلشي --}}
+<head>
+    {{-- لحتى الصفحات يزبطوا بكلشي --}}
 
 
-        <base href="/public">
+    <base href="/public">
 
 
-        {{--  --}}
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {{--  --}}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-        <title>@yield('title','Dashboard')</title>
-        {{--  --}}
+    <title>@yield('title','Dashboard')</title>
+    {{--  --}}
 
-        <link rel="apple-touch-icon" sizes="76x76" href="{{asset('./Dashboard/img/apple-icon.png')}}">
-        <link rel="icon" type="image/png" href="{{asset('./Dashboard/img/favicon.png')}}">
-        <!--     Fonts and icons     -->
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
-        <!-- Nucleo Icons -->
-        <link href="{{asset('./Dashboard/css/nucleo-icons.css')}}" rel="stylesheet" />
-        <link href="{{asset('./Dashboard/css/nucleo-svg.css')}}" rel="stylesheet" />
-        <!-- Font Awesome Icons -->
-        <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-        <link href="{{asset('./Dashboard/css/nucleo-svg.css')}}" rel="stylesheet" />
-        <!-- CSS Files -->
-        <link id="pagestyle" href="{{asset('./Dashboard/css/soft-ui-dashboard.css?v=1.0.3')}}" rel="stylesheet" />
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('./Dashboard/img/apple-icon.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('./Dashboard/img/favicon.png') }}">
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+    <!-- Nucleo Icons -->
+    <link href="{{ asset('./Dashboard/css/nucleo-icons.css') }}" rel="stylesheet" />
+    <link href="{{ asset('./Dashboard/css/nucleo-svg.css') }}" rel="stylesheet" />
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    <link href="{{ asset('./Dashboard/css/nucleo-svg.css') }}" rel="stylesheet" />
+    <!-- CSS Files -->
+    <link id="pagestyle" href="{{ asset('./Dashboard/css/soft-ui-dashboard.css?v=1.0.3') }}" rel="stylesheet" />
 
-        {{-- BootStrap 5 --}}
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-        {{-- BootStrap 4.6 --}}
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
-            integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
-            <script src="{{ asset('js/app.js') }}" defer></script>
-            <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    </head>
+    {{-- BootStrap 5 --}}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    {{-- BootStrap 4.6 --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+        integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+</head>
 
 <body class="g-sidenav-show  bg-gray-100">
     <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 "
@@ -47,7 +49,7 @@
                 aria-hidden="true" id="iconSidenav"></i>
             <a class="navbar-brand m-0" href="https://demos.creative-tim.com/soft-ui-dashboard/pages/dashboard.html"
                 target="_blank">
-                <img src="{{asset('./Dashboard/img/logo-ct.png')}}" class="navbar-brand-img h-100" alt="main_logo">
+                <img src="{{ asset('./Dashboard/img/logo-ct.png') }}" class="navbar-brand-img h-100" alt="main_logo">
                 <span class="ms-1 font-weight-bold">Made in my home</span>
             </a>
         </div>
@@ -56,7 +58,8 @@
             <ul class="navbar-nav">
                 {{-- Dashboard --}}
                 <li class="nav-item">
-                    <a class="nav-link {{ (request()->is('dashboard*')) ? 'active' : '' }} " href="{{route('dashboard')}}">
+                    <a class="nav-link {{ request()->is('dashboard*') ? 'active' : '' }} "
+                        href="{{ route('dashboard') }}">
                         <div
                             class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                             <svg width="12px" height="12px" viewBox="0 0 45 40" version="1.1"
@@ -88,7 +91,8 @@
                 </li>
                 {{-- Category Course --}}
                 <li class="nav-item">
-                    <a class="nav-link {{ (request()->is('categoryCourse*')) ? 'active' : '' }} " href="{{route('categoryCourse.index')}}">
+                    <a class="nav-link {{ request()->is('categoryCourse*') ? 'active' : '' }} "
+                        href="{{ route('categoryCourse.index') }}">
                         <div
                             class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                             <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1"
@@ -117,7 +121,8 @@
                 {{-- End Category Course --}}
                 {{-- Course --}}
                 <li class="nav-item">
-                    <a class="nav-link {{ (request()->is('course*')) ? 'active' : '' }} " href="{{route('Course.index')}}">
+                    <a class="nav-link {{ request()->is('course*') ? 'active' : '' }} "
+                        href="{{ route('Course.index') }}">
                         <div
                             class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                             <svg width="12px" height="12px" viewBox="0 0 45 40" version="1.1"
@@ -146,7 +151,8 @@
                 {{-- End Course --}}
                 {{-- Video --}}
                 <li class="nav-item">
-                    <a class="nav-link {{ (request()->is('video*')) ? 'active' : '' }} " href="{{route('video.index')}}">
+                    <a class="nav-link {{ request()->is('video*') ? 'active' : '' }} "
+                        href="{{ route('video.index') }}">
                         <div
                             class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                             <svg width="12px" height="12px" viewBox="0 0 43 36" version="1.1"
@@ -178,7 +184,8 @@
                 </li>
                 {{-- Category Product --}}
                 <li class="nav-item">
-                    <a class="nav-link {{ (request()->is('categoryProduct*')) ? 'active' : '' }} " href="{{route('categoryProduct.index')}}">
+                    <a class="nav-link {{ request()->is('categoryProduct*') ? 'active' : '' }} "
+                        href="{{ route('categoryProduct.index') }}">
                         <div
                             class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                             <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1"
@@ -210,7 +217,8 @@
                 {{-- End Category Product --}}
                 {{-- Product --}}
                 <li class="nav-item">
-                    <a class="nav-link {{ (request()->is('product*')) ? 'active' : '' }} " href="{{route('product.index')}}">
+                    <a class="nav-link {{ request()->is('product*') ? 'active' : '' }} "
+                        href="{{ route('product.index') }}">
                         <div
                             class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                             <svg width="12px" height="12px" viewBox="0 0 40 40" version="1.1"
@@ -242,7 +250,8 @@
                 {{-- End Product --}}
                 {{-- Notification --}}
                 <li class="nav-item">
-                    <a class="nav-link {{ (request()->is('notification*')) ? 'active' : '' }} " href="{{route('notification')}}">
+                    <a class="nav-link {{ request()->is('notification*') ? 'active' : '' }} "
+                        href="{{ route('notification') }}">
                         <div
                             class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                             <svg width="12px" height="12px" viewBox="0 0 40 40" version="1.1"
@@ -274,7 +283,8 @@
                 {{-- End Notification --}}
                 {{-- Users --}}
                 <li class="nav-item">
-                    <a class="nav-link {{ (request()->is('user*')) ? 'active' : '' }} " href="{{route('user.index')}}">
+                    <a class="nav-link {{ request()->is('user*') ? 'active' : '' }} "
+                        href="{{ route('user.index') }}">
                         <div
                             class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                             <svg width="12px" height="12px" viewBox="0 0 40 40" version="1.1"
@@ -308,7 +318,7 @@
                     <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Account pages</h6>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link  " href="{{asset('./Dashboard/pages/profile.html')}}">
+                    <a class="nav-link  " href="{{ asset('./Dashboard/pages/profile.html') }}">
                         <div
                             class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                             <svg width="12px" height="12px" viewBox="0 0 46 42" version="1.1"
@@ -410,7 +420,8 @@
                     <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
                         <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a>
                         </li>
-                        <li class="breadcrumb-item text-sm text-dark active" aria-current="page">@yield('PageName','Course')</li>
+                        <li class="breadcrumb-item text-sm text-dark active" aria-current="page">
+                            @yield('PageName','Course')</li>
                     </ol>
                     <h6 class="font-weight-bolder mb-0">Dashboard</h6>
                 </nav>
@@ -454,7 +465,8 @@
                                     <a class="dropdown-item border-radius-md" href="javascript:;">
                                         <div class="d-flex py-1">
                                             <div class="my-auto">
-                                                <img src="{{asset('./Dashboard/img/team-2.jpg')}}" class="avatar avatar-sm  me-3 ">
+                                                <img src="{{ asset('./Dashboard/img/team-2.jpg') }}"
+                                                    class="avatar avatar-sm  me-3 ">
                                             </div>
                                             <div class="d-flex flex-column justify-content-center">
                                                 <h6 class="text-sm font-weight-normal mb-1">
@@ -472,7 +484,7 @@
                                     <a class="dropdown-item border-radius-md" href="javascript:;">
                                         <div class="d-flex py-1">
                                             <div class="my-auto">
-                                                <img src="{{asset('./Dashboard/img/small-logos/logo-spotify.svg')}}"
+                                                <img src="{{ asset('./Dashboard/img/small-logos/logo-spotify.svg') }}"
                                                     class="avatar avatar-sm bg-gradient-dark  me-3 ">
                                             </div>
                                             <div class="d-flex flex-column justify-content-center">
@@ -534,100 +546,7 @@
 
         <!-- End Navbar -->
         <div class="container-fluid py-4">
-            <div class="row">
-                <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-                    <div class="card">
-                        <div class="card-body p-3">
-                            <div class="row">
-                                <div class="col-8">
-                                    <div class="numbers">
-                                        <p class="text-sm mb-0 text-capitalize font-weight-bold">Today's Money </p>
-                                        <h5 class="font-weight-bolder mb-0">
-                                            $53,000
-                                            <span class="text-success text-sm font-weight-bolder">+55%</span>
-                                        </h5>
-                                    </div>
-                                </div>
-                                <div class="col-4 text-end">
-                                    <div
-                                        class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
-                                        <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-                    <div class="card">
-                        <div class="card-body p-3">
-                            <div class="row">
-                                <div class="col-8">
-                                    <div class="numbers">
-                                        <p class="text-sm mb-0 text-capitalize font-weight-bold">Today's Users</p>
-                                        <h5 class="font-weight-bolder mb-0">
-                                            2,300
-                                            <span class="text-success text-sm font-weight-bolder">+3%</span>
-                                        </h5>
-                                    </div>
-                                </div>
-                                <div class="col-4 text-end">
-                                    <div
-                                        class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
-                                        <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-                    <div class="card">
-                        <div class="card-body p-3">
-                            <div class="row">
-                                <div class="col-8">
-                                    <div class="numbers">
-                                        <p class="text-sm mb-0 text-capitalize font-weight-bold">New Clients</p>
-                                        <h5 class="font-weight-bolder mb-0">
-                                            +3,462
-                                            <span class="text-danger text-sm font-weight-bolder">-2%</span>
-                                        </h5>
-                                    </div>
-                                </div>
-                                <div class="col-4 text-end">
-                                    <div
-                                        class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
-                                        <i class="ni ni-paper-diploma text-lg opacity-10" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-sm-6">
-                    <div class="card">
-                        <div class="card-body p-3">
-                            <div class="row">
-                                <div class="col-8">
-                                    <div class="numbers">
-                                        <p class="text-sm mb-0 text-capitalize font-weight-bold">Sales</p>
-                                        <h5 class="font-weight-bolder mb-0">
-                                            $103,430
-                                            <span class="text-success text-sm font-weight-bolder">+5%</span>
-                                        </h5>
-                                    </div>
-                                </div>
-                                <div class="col-4 text-end">
-                                    <div
-                                        class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
-                                        <i class="ni ni-cart text-lg opacity-10" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @yield('dashboard')
             <!--  -->
             <div class="row mt-4">
                 {{--  --}}
@@ -770,11 +689,11 @@
         </div>
     </div>
     <!--   Core JS Files   -->
-    <script src="{{asset('./Dashboard/js/core/popper.min.js')}}"></script>
-    <script src="{{asset('./Dashboard/js/core/bootstrap.min.js')}}"></script>
-    <script src="{{asset('./Dashboard/js/plugins/perfect-scrollbar.min.js')}}"></script>
-    <script src="{{asset('./Dashboard/js/plugins/smooth-scrollbar.min.js')}}"></script>
-    <script src="{{asset('./Dashboard/js/plugins/chartjs.min.js')}}"></script>
+    <script src="{{ asset('./Dashboard/js/core/popper.min.js') }}"></script>
+    <script src="{{ asset('./Dashboard/js/core/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('./Dashboard/js/plugins/perfect-scrollbar.min.js') }}"></script>
+    <script src="{{ asset('./Dashboard/js/plugins/smooth-scrollbar.min.js') }}"></script>
+    <script src="{{ asset('./Dashboard/js/plugins/chartjs.min.js') }}"></script>
     <script>
         var ctx = document.getElementById("chart-bars").getContext("2d");
 
@@ -957,32 +876,50 @@
     <!-- Github buttons -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-    <script src="{{asset('./Dashboard/js/soft-ui-dashboard.min.js?v=1.0.3')}}"></script>
-    <script src="{{asset('./Dashboard/js/soft-ui-dashboard.js?v=1.0.3')}}"></script>
+    <script src="{{ asset('./Dashboard/js/soft-ui-dashboard.min.js?v=1.0.3') }}"></script>
+    <script src="{{ asset('./Dashboard/js/soft-ui-dashboard.js?v=1.0.3') }}"></script>
 
 
     {{-- bootstrap JavaScript --}}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js" integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js"
+        integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous">
+    </script>
 
 </body>
-    {{-- Me --}}
-    <script>
-        jQuery(function($){
+{{-- Me --}}
+<script>
+    jQuery(function($) {
 
-            $(document).ready(function() {
-                $(".nav-link").click(function() {
-                    $(this).addClass("active").parent().siblings().find('a').removeClass("active");
-                });
+        $(document).ready(function() {
+            $(".nav-link").click(function() {
+                $(this).addClass("active").parent().siblings().find('a').removeClass("active");
             });
         });
-    </script>
+    });
+</script>
 
 </html>

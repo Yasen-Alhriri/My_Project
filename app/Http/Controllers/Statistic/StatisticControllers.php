@@ -13,10 +13,13 @@ class StatisticControllers extends Controller
     //
     public function userCount(){
 
+        // Statistics
         $userCount = User::where('deleted_at', '=', '0')->count();
         $productCount= Product::where('deleted_at', '=', '0')->count();
+        //
+        $products = Product::inRandomOrder('id')->limit(5)->get();
         // dd($userCount);
-        return view('dashboard', compact('userCount','productCount'));
+        return view('dashboard', compact('userCount','productCount','products'));
     }
 
 
