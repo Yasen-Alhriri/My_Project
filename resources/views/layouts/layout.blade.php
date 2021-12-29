@@ -321,8 +321,10 @@
                     <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Account pages</h6>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link  " href="{{ asset('./Dashboard/pages/profile.html') }}">
-                        <div
+                    <a class="nav-link  " {{--href="./Dashboard/pages/profile.html"--}}
+                    href="{{route('profile')}}"
+                >
+                                        <div
                             class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                             <svg width="12px" height="12px" viewBox="0 0 46 42" version="1.1"
                                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -350,8 +352,12 @@
                         <span class="nav-link-text ms-1">Profile</span>
                     </a>
                 </li>
+
+                 @if ( Auth::user()->role==1)
                 <li class="nav-item">
-                    <a class="nav-link  " href="./Dashboard/pages/sign-in.html">
+                    <a class="nav-link  " {{--href="./Dashboard/pages/sign-in.html"--}}
+                    href="{{route('create')}}"
+                    >
                         <div
                             class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                             <svg width="12px" height="12px" viewBox="0 0 40 44" version="1.1"
@@ -374,10 +380,14 @@
                                 </g>
                             </svg>
                         </div>
-                        <span class="nav-link-text ms-1">Sign In</span>
+
+                        <span class="nav-link-text ms-1">Sign Up</span>
+
                     </a>
                 </li>
-                <li class="nav-item">
+                @endif
+
+               {{--<li class="nav-item">
                     <a class="nav-link  " href="./Dashboard/pages/sign-up.html">
                         <div
                             class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -407,9 +417,9 @@
                                 </g>
                             </svg>
                         </div>
-                        <span class="nav-link-text ms-1">Sign Up</span>
+                       <span  class="nav-link-text ms-1">Sign Up</span>
                     </a>
-                </li>
+                </li>--}}
             </ul>
         </div>
 

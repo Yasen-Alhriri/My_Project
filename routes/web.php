@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 //
+use App\Http\Controllers\HomeController;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -26,6 +27,7 @@ use App\Http\Controllers\User\UserController;
 
 // Statistic
 use App\Http\Controllers\Statistic\StatisticControllers;
+use App\Http\Controllers\Admin\ProfileController;
 
 
 
@@ -43,11 +45,14 @@ use App\Http\Controllers\Statistic\StatisticControllers;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Route::get('/', [CategoryCourseController::class, 'index'])->name('categoryCourse.index');
+//Route::get('/', [CategoryCourseController::class, 'index'])->name('categoryCourse.index');
+Route::get('/', function () {
+    return view('auth.login');
+});
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home',[HomeController::class,'index'])->name('home');
 
 
 // Course
@@ -192,3 +197,10 @@ Route::namespace('dashboard')->group(function () {
         Route::get('/dashboard', [StatisticControllers::class , 'userCount'])->name('dashboard');
     });
 });
+
+Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
+Route::get('/edit/{id}', [ProfileController::class, 'edit'])->name('admin.edit');
+Route::put('/update/{id}', [ProfileController::class, 'update'])->name('admin.update');
+Route::get('/create', [ProfileController::class, 'create'])->name('create');
+Route::post('/store', [ProfileController::class, 'store'])->name('store');
+Route::get('/show', [ProfileController::class, 'show'])->name('admin.show');
