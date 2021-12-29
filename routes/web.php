@@ -40,9 +40,10 @@ use App\Http\Controllers\Statistic\StatisticControllers;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+Route::get('/', [CategoryCourseController::class, 'index'])->name('categoryCourse.index');
 
 Auth::routes();
 
