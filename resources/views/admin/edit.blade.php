@@ -16,14 +16,14 @@
         <div class="card">
             <div class="card-body p-3">
 
-                <form action="{{ route('admin.update', $user->id) }}" method="post" enctype="multipart/form-data"
+                <form action="{{ route('admin.update', $admin->id) }}" method="post" enctype="multipart/form-data"
                     class="container mt-5">
                     @csrf
                     @method('PUT')
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" name="f_name" placeholder="Name"
-                            value="{{ $user->F_name }}" required>
+                            value="{{ $admin->F_name }}" required>
                         <label for="floatingInput">First Name</label>
                         {{-- Error --}}
                         @include('common.error', [$name='f-name'])
@@ -31,14 +31,14 @@
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" name="l_name" placeholder="Name"
-                            value="{{ $user->L_name }}" required>
+                            value="{{ $admin->L_name }}" required>
                         <label for="floatingInput">last Name</label>
                         {{-- Error --}}
                         @include('common.error', [$name='l_name'])
                     </div>
 
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" name="name" placeholder="Name" value="{{ $user->name }}"
+                        <input type="text" class="form-control" name="name" placeholder="Name" value="{{ $admin->name }}"
                             required>
                         <label for="floatingInput">Name</label>
                         {{-- Error --}}
@@ -46,14 +46,14 @@
                     </div>
                     <div class="form-floating mb-3">
                         <input type="email" class="form-control" id="floatingInput" name="email"
-                            placeholder="example@gmail.com" value="{{ $user->email }}" required>
+                            placeholder="example@gmail.com" value="{{ $admin->email }}" required>
                         <label for="floatingInput">Email</label>
                         {{-- Error --}}
                         @include('common.error', [$name='email'])
                     </div>
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="floatingInput" name="phone" placeholder="07########"
-                            value="{{ $user->phone }}" required>
+                            value="{{ $admin->phone }}" required>
                         <label for="floatingInput">phone</label>
                         {{-- Error --}}
                         @include('common.error', [$name='phone'])

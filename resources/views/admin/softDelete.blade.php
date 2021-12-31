@@ -1,21 +1,18 @@
 @extends('layouts.layout')
 
-@section('PageName', 'Admin Show')
+@section('PageName', 'Admin')
 
 @section('content')
 
 
 
     <!--  -->
-    <div class="col-lg-7 mb-lg-0 mb-4" style="min-width: -webkit-fill-available;">
+    <div class="col-lg-7 mb-lg-0 mb-4" style="min-width: fit-content;">
 
-        <div class="card" style="min-width: fit-content;">
+        <div class="card">
             <div class="card-body p-3">
 
-                <a href="{{ route('profile') }}" class="btn btn-secondary" aria-current="page">Back</a>
-
-                    <a href="{{ route('admin.soft.delete.show') }}" class="btn btn-info" aria-current="page">Soft
-                        Delete</a>
+                <a href="{{ route('admin.show') }}" class="btn btn-secondary" aria-current="page">Back</a>
 
 
                 <table class="table table-hover container">
@@ -28,7 +25,6 @@
                             <th scope="col">Email</th>
                             <th scope="col">Phone</th>
                             <th scope="col">permission</th>
-
                         </tr>
                     </thead>
 
@@ -36,7 +32,6 @@
                     <tbody>
                         @foreach ($admins as $admin)
                             <tr>
-
                                 <th scope="row">
                                     <p>{{ ++$count }}</p>
                                 </th>
@@ -61,20 +56,24 @@
                                 <td>
                                     <p class="card-title">{{ $admin->role }}</p>
                                 </td>
-                                <td>
+ <td>
                                     {{--  --}}
                                     <div class="btn-group">
-                                        <a href="{{ route('admin.edit', $admin->id) }}" class="btn btn-success">Edit</a>
+                                        <form action="{{ route('admin.delete', $admin->id) }}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                        </form>
 
-                                            <form action="{{ route('admin.soft.delete', $admin->id) }}" method="post">
-                                                @csrf
-                                                <button type="submit" class="btn btn-danger">Soft Delete</button>
-                                            </form>
+                                        <form action="{{ route('admin.back.soft.delete', $admin->id) }}" method="post">
+                                            @csrf
+                                            <button type="submit" class="btn btn-success">Back Soft Delete</button>
+                                        </form>
+
                                     </div>
                                 </td>
-
                             </tr>
-                        @endforeach
+                            @endforeach
                     </tbody>
                 </table>
 
@@ -86,4 +85,6 @@
     </div>
 
 
+
+    {{-- {{$admin->links()}} --}}
 @endsection

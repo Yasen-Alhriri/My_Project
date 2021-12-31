@@ -20,6 +20,7 @@ class ProfileController extends Controller
 
     public function profile()
     {
+
         $admin = Auth::user();
         // dd($admin);
         return view('admin.profile',compact('admin'));
@@ -33,8 +34,8 @@ class ProfileController extends Controller
     public function create()
     {
 
-        $user = User::all();
-       return view('auth.register', compact('user'));
+        $admin = User::all();
+       return view('auth.register', compact('admin'));
 
         // $user = Auth::user();
         // $id = Auth::id();
@@ -51,14 +52,14 @@ class ProfileController extends Controller
     {
 
 
-        $user = new User;
-        $user->F_name = $request->input('f_name');
-        $user->L_name = $request->input('l_name');
-        $user->email = $request->input('email');
-        $user->password = $request->input('password');
-        $user->phone = $request->input('phone');
-        $user->name = $request->input('name');
-        $user->role = $request->input('role');
+        $admin = new User;
+        $admin->F_name = $request->input('f_name');
+        $admin->L_name = $request->input('l_name');
+        $admin->email = $request->input('email');
+        $admin->password = $request->input('password');
+        $admin->phone = $request->input('phone');
+        $admin->name = $request->input('name');
+        $admin->role = $request->input('role');
 
 
         if ($request->hasFile('image')) {
@@ -68,10 +69,10 @@ class ProfileController extends Controller
             $extention = $file->getClientOriginalExtension();
             $filename = time() . '.' . $extention;
             $file->move('image/admin/', $filename);
-            $user->image = $filename;
+            $admin->image = $filename;
         }
 
-        $user->save();
+        $admin->save();
         return redirect()->route('profile');
 
     }
@@ -84,8 +85,26 @@ class ProfileController extends Controller
      */
     public function show()
     {
-        return view('admin.show');
+        $admins = User::where('deleted_at', '=', '0')->latest(
+            'F_name',
+            'L_name',
+             'name',
+            'email',
+            'image',
+            'phone',
+            'role',
+
+        )->paginate(10);
+        $count = 0;
+        return view('admin.show', compact('admins', 'count'))->with('i', (request()->input('page', 1) - 1) * 5);
+
+
+
+    //     $admins = User::all();
+    //     $count = 0;
+    //  return view('admin.show', compact('admins','count'));
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -95,8 +114,8 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
-        $user = User::where('id', '=', $id)->first();
-        return view('admin.edit', compact('user'));
+        $admin = User::where('id', '=', $id)->first();
+        return view('admin.edit', compact('admin'));
     }
 
     /**
@@ -108,13 +127,13 @@ class ProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = User::where('id', '=', $id)->first();
-        $user->F_name = $request->input('f_name');
-        $user->L_name = $request->input('l_name');
-        $user->email = $request->input('email');
-       // $user->password = $request->input('password');
-        $user->phone = $request->input('phone');
-        $user->name = $request->input('name');
+        $admin = User::where('id', '=', $id)->first();
+        $admin->F_name = $request->input('f_name');
+        $admin->L_name = $request->input('l_name');
+        $admin->email = $request->input('email');
+       // $admin->password = $request->input('password');
+        $admin->phone = $request->input('phone');
+        $admin->name = $request->input('name');
 
 
         if ($request->hasFile('image')) {
@@ -124,12 +143,43 @@ class ProfileController extends Controller
             $extention = $file->getClientOriginalExtension();
             $filename = time() . '.' . $extention;
             $file->move('image/admin/', $filename);
-            $user->image = $filename;
+            $admin->image = $filename;
         }
 
-        $user->update();
+        $admin->update();
         return redirect()->route('profile');
 
+    }
+    public function softDelete($id)
+    {
+        $admin = User::find($id);
+        $admin->deleted_at = 1;
+        $admin->update();
+        return redirect()->back();
+    }
+
+    public function backFromSoftDelete($id)
+    {
+
+        $admin = User::where('id', '=', $id)->first();
+        $admin->deleted_at = 0;
+        $admin->save();
+
+        return redirect()->back();
+    }
+    public function softDeleteShow()
+    {
+        $admins = User::where('deleted_at', '=', '1')->latest(
+            'F_name',
+            'L_name',
+             'name',
+            'email',
+            'image',
+            'phone',
+            'role'
+              )->paginate(4);
+        $count = 0;
+        return view('admin.softDelete', compact('admins', 'count'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -140,6 +190,9 @@ class ProfileController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $admin = User::where('id', '=', $id)->first();
+        $admin->delete();
+        return redirect()->back();
     }
+
 }

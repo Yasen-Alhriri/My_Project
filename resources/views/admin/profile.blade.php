@@ -17,10 +17,13 @@
                 <table class="table table-hover container">
                     <thead>
                         <tr>
-                            <th scope="col">Number</th>
+                            <th scope="col">#</th>
                             <th scope="col">Image</th>
                             <th scope="col">Name</th>
+                            <th scope="col">User Name</th>
                             <th scope="col">Email</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">permission</th>
                         </tr>
                     </thead>
 
@@ -35,22 +38,37 @@
                                     width="50px" height="50px">
                             </td>
                             <td>
+                                <h5 class="card-title">{{ $admin->F_name . ' ' . $admin->L_name }}</h5>
+                            </td>
+
+                            <td>
                                 <h5 class="card-title">{{ $admin->name }}</h5>
                             </td>
                             <td>
                                 <h5 class="card-title">{{ $admin->email }}</h5>
                             </td>
                             <td>
+                                <p class="card-title">{{ $admin->phone }}</p>
+                            </td>
+                            <td>
+                                <p class="card-title">{{ $admin->role }}</p>
+                            </td>
+                            <td>
                                 {{--  --}}
                                 <div class="btn-group">
 
                                     <a href="{{ route('admin.edit', $admin->id) }}" class="btn btn-success">Edit</a>
-                                    @if (Auth::user()->role == 1)
-                                        <a href="{{ route('admin.show') }}" class="btn btn-primary"
-                                            aria-current="page">Show Other Admin</a>
-                                    @endif
+
                                 </div>
                             </td>
+                        <tr>
+                            <div class="btn-group">
+                            @if (Auth::user()->role == 1)
+                            <a href="{{route('admin.show')}}" class="btn btn-primary"
+                                aria-current="page">Show Other Admin</a>
+                        @endif
+                    </div>
+                        </tr>
 
                         </tr>
                     </tbody>
