@@ -149,6 +149,8 @@
                                     <button type="submit" class="btn btn-primary">
                                         {{ __('Register') }}
                                     </button>
+                                    <a href="{{ route('profile') }}" class="btn btn-secondary" aria-current="page">Back</a>
+
                                 </div>
                             </div>
                         </form>

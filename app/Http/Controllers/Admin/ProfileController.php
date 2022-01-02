@@ -33,13 +33,8 @@ class ProfileController extends Controller
      */
     public function create()
     {
-
-        $admin = User::all();
+      $admin = User::all();
        return view('auth.register', compact('admin'));
-
-        // $user = Auth::user();
-        // $id = Auth::id();
-
     }
 
     /**
@@ -85,7 +80,7 @@ class ProfileController extends Controller
      */
     public function show()
     {
-        $admins = User::where('deleted_at', '=', '0')->latest(
+        $admins = User::where('deleted_at', '=', '0' )->latest(
             'F_name',
             'L_name',
              'name',
@@ -96,6 +91,7 @@ class ProfileController extends Controller
 
         )->paginate(10);
         $count = 0;
+
         return view('admin.show', compact('admins', 'count'))->with('i', (request()->input('page', 1) - 1) * 5);
 
 

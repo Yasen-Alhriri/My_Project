@@ -198,13 +198,13 @@ Route::namespace('dashboard')->group(function () {
     });
 });
 
-Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
-Route::get('/edit/{id}', [ProfileController::class, 'edit'])->name('admin.edit');
-Route::put('/update/{id}', [ProfileController::class, 'update'])->name('admin.update');
-Route::get('/create', [ProfileController::class, 'create'])->name('create');
-Route::post('/store', [ProfileController::class, 'store'])->name('store');
-Route::get('/show', [ProfileController::class, 'show'])->name('admin.show');
-Route::post('/soft-delete/{id}', [ProfileController::class, 'softDelete'])->name('admin.soft.delete');
-Route::post('/back-soft-delete/{id}', [ProfileController::class, 'backFromSoftDelete'])->name('admin.back.soft.delete');
-Route::get('/soft-delete/show', [ProfileController::class, 'softDeleteShow'])->name('admin.soft.delete.show');
-Route::delete('/delete/{id}', [ProfileController::class, 'destroy'])->name('admin.delete');
+Route::get('/profile', [ProfileController::class, 'profile'])->name('profile')->middleware('admin');
+Route::get('/edit/{id}', [ProfileController::class, 'edit'])->name('admin.edit')->middleware('admin');
+Route::put('/update/{id}', [ProfileController::class, 'update'])->name('admin.update')->middleware('admin');
+Route::get('/create', [ProfileController::class, 'create'])->name('create')->middleware('admin');
+Route::post('/store', [ProfileController::class, 'store'])->name('store')->middleware('admin');
+Route::get('/show', [ProfileController::class, 'show'])->name('admin.show')->middleware('admin');
+Route::post('/soft-delete/{id}', [ProfileController::class, 'softDelete'])->name('admin.soft.delete')->middleware('admin');
+Route::post('/back-soft-delete/{id}', [ProfileController::class, 'backFromSoftDelete'])->name('admin.back.soft.delete')->middleware('admin');
+Route::get('/soft-delete/show', [ProfileController::class, 'softDeleteShow'])->name('admin.soft.delete.show')->middleware('admin');
+Route::delete('/delete/{id}', [ProfileController::class, 'destroy'])->name('admin.delete')->middleware('admin');
